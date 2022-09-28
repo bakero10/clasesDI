@@ -1,3 +1,6 @@
+
+import dto.Persona;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
@@ -12,9 +15,16 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialogMensaje
      */
-    public NewJDialogMensaje(java.awt.Frame parent,String titulo, boolean modal) {
-        super(parent, modal);
+    Persona persona;
+    JFrameMIO jFrameMio;
+    JTextFieldNombre jTextFieldNombre;
+    
+    public NewJDialogMensaje(java.awt.Frame parent,Persona persona, boolean modal) {
+        super(parent,titulo, modal);
         initComponents();
+        jFrameMio=(JFrameMIO)parent;
+        persona = new Persona(jFrameMio.jTextFieldNombre.getText());
+        jTextFieldNombre.setText(persona.getNombre());
     }
 
     /**
@@ -41,7 +51,10 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt){
+        persona.setNombre(jTextFieldNombre.getText());
+        jFrameMio.jTextFieldNombre.setText(persona.getNombre());
+    }
     /**
      * @param args the command line arguments
      */

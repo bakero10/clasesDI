@@ -1,4 +1,5 @@
 
+import dto.Persona;
 import javax.swing.JDialog;
 
 /*
@@ -99,6 +100,8 @@ public class JFrameMIO extends javax.swing.JFrame {
     private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
         // TODO add your handling code here:
         jDialogMensaje = new NewJDialogMensaje(this,"Hola GUI te he llamado", true);
+        Persona persona = new Persona(jTextFieldNombre.getText());
+        jDialogMensaje.setVisible(true);
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     /**
@@ -140,6 +143,6 @@ public class JFrameMIO extends javax.swing.JFrame {
     private javax.swing.JButton jButton1Mostrar;
     private javax.swing.JLabel jLabel1Nombre;
     private javax.swing.JSpinner jSpinnerAlta;
-    private javax.swing.JTextField jTextFieldNombre;
+    public javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
