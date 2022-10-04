@@ -1,6 +1,10 @@
 
 import dto.Persona;
+import java.io.IOException;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,14 +17,12 @@ import javax.swing.JDialog;
  */
 public class JFrameMIO extends javax.swing.JFrame {
 
-   public JFrameMIO(){
-       initComponents();
-   }
     /**
      * Creates new form JFrameMIO
      */
     NewJDialogMensaje jDialogMensaje;
     Persona persona;
+    ValidationGroup group;
     
     public Persona getPersona(){
         return persona;
@@ -34,7 +36,18 @@ public class JFrameMIO extends javax.swing.JFrame {
         jSpinnerEdad.setValue(persona.getEdad());
     }
     
-
+    public JFrameMIO(){
+        initComponents();
+        group = validationPanelMensajes.getValidationGroup();
+        // a continuación a este grupo se le añaden los campos a validar
+        //a continuación a este grupo se le añaden los campos a validar
+        group.add(jTextFieldNombre,StringValidators.REQUIRE_NON_EMPTY_STRING); 
+        //se pueden añadir varias condiciones
+        group.add(jTextFieldEdad,StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTextFieldEdad,StringValidators.REQUIRE_VALID_INTEGER);
+        //En este caso miramos que no sea vacío y sea una dirección de email
+        group.add(jTextFieldMail,StringValidators.REQUIRE_NON_EMPTY_STRING,StringValidators.EMAIL_ADDRESS);
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -47,15 +60,13 @@ public class JFrameMIO extends javax.swing.JFrame {
         jLabelMail = new javax.swing.JLabel();
         jLabel1Edad = new javax.swing.JLabel();
         jTextFieldMail = new javax.swing.JTextField();
+        boton = new javax.swing.JButton();
+        jTextFieldEdad = new javax.swing.JTextField();
+        validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        validationPanelMensajes = new org.netbeans.validation.api.ui.swing.ValidationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("kk View");
-
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
-            }
-        });
 
         jLabel1Nombre.setText("Nombre");
 
@@ -68,14 +79,26 @@ public class JFrameMIO extends javax.swing.JFrame {
         });
 
         jSpinnerEdad.setModel(new javax.swing.SpinnerNumberModel(18, 18, 99, 1));
+        jSpinnerEdad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerEdadStateChanged(evt);
+            }
+        });
 
         jLabelMail.setText("Mail");
 
         jLabel1Edad.setText("Edad");
 
-        jTextFieldMail.addActionListener(new java.awt.event.ActionListener() {
+        boton.setText("Edad");
+        boton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMailActionPerformed(evt);
+                botonActionPerformed(evt);
+            }
+        });
+
+        jTextFieldEdad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEdadFocusLost(evt);
             }
         });
 
@@ -84,9 +107,9 @@ public class JFrameMIO extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1Edad)
@@ -96,10 +119,24 @@ public class JFrameMIO extends javax.swing.JFrame {
                             .addComponent(jSpinnerEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                             .addComponent(jTextFieldMail)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1Mostrar)
                         .addGap(27, 27, 27)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextFieldEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(boton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(validationPanelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,14 +148,23 @@ public class JFrameMIO extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelMail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jButton1Mostrar)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1Mostrar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(validationPanelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -132,13 +178,37 @@ public class JFrameMIO extends javax.swing.JFrame {
         jDialogMensaje.setVisible(true);
     }//GEN-LAST:event_jButton1MostrarActionPerformed
 
-    private void jTextFieldMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMailActionPerformed
+    private void botonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActionPerformed
+       int edad=Integer.valueOf(JOptionPane.showInputDialog("Introduce la edad"));
+        int opcion=JOptionPane.showConfirmDialog(rootPane, "La edad Introducida es "+edad,
+        "Comprobación de edad",JOptionPane.YES_NO_OPTION, JOptionPane.CANCEL_OPTION );
 
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
+        if(opcion==JOptionPane.YES_OPTION)
+        JOptionPane.showMessageDialog(rootPane, "Edad correcta " + edad,
+        "Guardado",  JOptionPane.INFORMATION_MESSAGE);
+        jSpinnerEdad.setValue(edad);
+    }//GEN-LAST:event_botonActionPerformed
+
+    private void jSpinnerEdadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerEdadStateChanged
+        jTextFieldEdad.setText(String.valueOf(jSpinnerEdad.getValue()) );
+    }//GEN-LAST:event_jSpinnerEdadStateChanged
+
+    private void jTextFieldEdadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEdadFocusLost
+        try {
+            Integer edad=Integer.parseInt(jTextFieldEdad.getText());
+            if(edad < 18 && edad>99)
+                throw new IOException();
+            jSpinnerEdad.setValue(Integer.valueOf(edad));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "El formato de la edad no es correcto","Alerta",JOptionPane.ERROR_MESSAGE);
+            jTextFieldEdad.setText(String.valueOf(jSpinnerEdad.getValue()));
+        }catch (IOException io) {
+            JOptionPane.showMessageDialog(rootPane, "El valor no esta en el rango de edad","Alerta",JOptionPane.ERROR_MESSAGE);
+            jTextFieldEdad.setText(String.valueOf(jSpinnerEdad.getValue()));
+        }
+        
+        
+    }//GEN-LAST:event_jTextFieldEdadFocusLost
 
     /**
      * @param args the command line arguments
@@ -180,12 +250,16 @@ public class JFrameMIO extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton;
     private javax.swing.JButton jButton1Mostrar;
     private javax.swing.JLabel jLabel1Edad;
     private javax.swing.JLabel jLabel1Nombre;
     private javax.swing.JLabel jLabelMail;
     private javax.swing.JSpinner jSpinnerEdad;
+    private javax.swing.JTextField jTextFieldEdad;
     private javax.swing.JTextField jTextFieldMail;
     public javax.swing.JTextField jTextFieldNombre;
+    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
+    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanelMensajes;
     // End of variables declaration//GEN-END:variables
 }

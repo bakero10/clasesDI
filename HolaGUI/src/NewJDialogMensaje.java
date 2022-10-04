@@ -1,5 +1,6 @@
 
 import dto.Persona;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -53,6 +54,7 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
         jLabelMail = new javax.swing.JLabel();
         jLabel1Edad = new javax.swing.JLabel();
         jLabel1Nombre = new javax.swing.JLabel();
+        boton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,25 +65,15 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
             }
         });
 
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
-            }
-        });
-
         jSpinnerEdad.setModel(new javax.swing.SpinnerNumberModel(18, 18, 99, 1));
-
-        jTextFieldMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMailActionPerformed(evt);
-            }
-        });
 
         jLabelMail.setText("Mail");
 
         jLabel1Edad.setText("Edad");
 
         jLabel1Nombre.setText("Nombre");
+
+        boton.setText("Edad");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +82,8 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jButtonVolver))
+                        .addGap(66, 66, 66)
+                        .addComponent(boton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -102,7 +94,10 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSpinnerEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                            .addComponent(jTextFieldMail))))
+                            .addComponent(jTextFieldMail)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jButtonVolver)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,22 +115,15 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelMail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButtonVolver)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
-
-    private void jTextFieldMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMailActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         //jFrameMio.setPersona(new Persona(jTextFieldNombre.getText(),(Integer)jSpinnerEdad.getValue(),jTextFieldMail.getText()));
@@ -150,6 +138,7 @@ public class NewJDialogMensaje extends javax.swing.JDialog {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1Edad;
     private javax.swing.JLabel jLabel1Nombre;
