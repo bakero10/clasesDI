@@ -1,7 +1,10 @@
 
 import dto.Persona;
+import java.awt.Dimension;
 import java.io.IOException;
+import java.util.Locale;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
 import org.netbeans.validation.api.ui.ValidationGroup;
@@ -23,6 +26,7 @@ public class JFrameMIO extends javax.swing.JFrame {
     NewJDialogMensaje jDialogMensaje;
     Persona persona;
     ValidationGroup group;
+    JLabel saludo;
     
     public Persona getPersona(){
         return persona;
@@ -47,6 +51,10 @@ public class JFrameMIO extends javax.swing.JFrame {
         group.add(jTextFieldEdad,StringValidators.REQUIRE_VALID_INTEGER);
         //En este caso miramos que no sea vacío y sea una dirección de email
         group.add(jTextFieldMail,StringValidators.REQUIRE_NON_EMPTY_STRING,StringValidators.EMAIL_ADDRESS);
+        saludo = new JLabel("Hola Frame Mio");
+        //saludo.setMinimumSize(new Dimension(100,100));
+        saludo.setBounds(10, 20, 100, 20);
+        this.add(saludo);
     }
    
     @SuppressWarnings("unchecked")
@@ -64,6 +72,7 @@ public class JFrameMIO extends javax.swing.JFrame {
         jTextFieldEdad = new javax.swing.JTextField();
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
         validationPanelMensajes = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("kk View");
@@ -96,11 +105,24 @@ public class JFrameMIO extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldEdad.setEnabled(false);
         jTextFieldEdad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldEdadFocusLost(evt);
             }
         });
+
+        validationPanelMensajes.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                validationPanelMensajesStateChanged(evt);
+            }
+        });
+
+        jLabelTitulo.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        jLabelTitulo.setText("MI KK VIEW ESTA SALIENDO CHACHI");
+        jLabelTitulo.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,12 +158,17 @@ public class JFrameMIO extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(validationPanelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addContainerGap()
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Nombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,6 +237,13 @@ public class JFrameMIO extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextFieldEdadFocusLost
 
+    private void validationPanelMensajesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_validationPanelMensajesStateChanged
+        if(validationPanelMensajes.getProblem()==null)
+            jButton1Mostrar.setEnabled(true);
+        else
+            jButton1Mostrar.setEnabled(false);
+    }//GEN-LAST:event_validationPanelMensajesStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +278,7 @@ public class JFrameMIO extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Locale.setDefault(new Locale("es","ES"));
                 new JFrameMIO().setVisible(true);
             }
         });
@@ -255,6 +290,7 @@ public class JFrameMIO extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1Edad;
     private javax.swing.JLabel jLabel1Nombre;
     private javax.swing.JLabel jLabelMail;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JSpinner jSpinnerEdad;
     private javax.swing.JTextField jTextFieldEdad;
     private javax.swing.JTextField jTextFieldMail;
