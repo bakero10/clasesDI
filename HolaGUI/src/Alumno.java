@@ -11,6 +11,12 @@ public class Alumno {
     String nombre;
     String apellidos;
     Integer edad;
+
+    public Alumno(String nombre, String apellidos, Integer edad) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+    }
     
     public String getNombre() {
         return nombre;
@@ -36,4 +42,8 @@ public class Alumno {
         this.edad = edad;
     }
     
+    public String[] getAlumno(){
+    String[] resultado = {nombre,apellidos,String.valueOf(edad)};
+    return resultado;
+    }
 }
