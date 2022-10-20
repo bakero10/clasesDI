@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.RowFilter;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
@@ -25,10 +26,14 @@ public class JFrameTable extends javax.swing.JFrame {
     DefaultTableModel dtm;
     ArrayList alumnos;
     String cabecera[] = {"Nombre","Apellidos","Edad"};
+    TableRowSorter<TableModel> order;
+    
     public JFrameTable() {
         initComponents();
         dtm=new DefaultTableModel(cabecera,0);
-        TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(dtm);
+        order = new TableRowSorter<TableModel>(dtm);
+        
+      
         jTableAlumnos.setRowSorter(order);
         ArrayList<SortKey> keys = new ArrayList<SortKey>();
         keys.add(new SortKey(0, SortOrder.ASCENDING));
@@ -58,6 +63,8 @@ public class JFrameTable extends javax.swing.JFrame {
         jTableAlumnos = new javax.swing.JTable();
         jButtonEliminar = new javax.swing.JButton();
         jButtonInsertar = new javax.swing.JButton();
+        jTextFieldBuscar = new javax.swing.JTextField();
+        jButtonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,20 +95,33 @@ public class JFrameTable extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldBuscar.setText(org.openide.util.NbBundle.getMessage(JFrameTable.class, "JFrameTable.jTextFieldBuscar.text")); // NOI18N
+
+        jButtonBuscar.setText(org.openide.util.NbBundle.getMessage(JFrameTable.class, "JFrameTable.jButtonBuscar.text")); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+                holaEvent(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonInsertar)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonEliminar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButtonInsertar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonEliminar)
-                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +131,9 @@ public class JFrameTable extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEliminar)
-                    .addComponent(jButtonInsertar))
+                    .addComponent(jButtonInsertar)
+                    .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar))
                 .addGap(43, 43, 43))
         );
 
@@ -135,6 +157,17 @@ public class JFrameTable extends javax.swing.JFrame {
             dtm.addRow(alumno.getAlumno());
        
     }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        RowFilter <TableModel,Integer> rf = RowFilter.regexFilter(jTextFieldBuscar.getText(),1);
+        order.setRowFilter(rf);
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void holaEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holaEvent
+        // TODO add your handling code here:
+        System.out.println("Hola eventos"+evt.getClass().getCanonicalName());
+    }//GEN-LAST:event_holaEvent
 
     /**
      * @param args the command line arguments
@@ -172,9 +205,11 @@ public class JFrameTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAlumnos;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }
