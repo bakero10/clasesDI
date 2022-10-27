@@ -4,8 +4,9 @@
  */
 package Conversor;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import java.util.ArrayList;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,11 +17,12 @@ public class Insertar extends javax.swing.JDialog {
     /**
      * Creates new form Insertar
      */
-    //JFrameTable padre;
+     ArrayList<Divisa> lista = new ArrayList<Divisa>();
+     Conversor padre;
     public Insertar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-       // padre = JFrameTable(parent);
         initComponents();
+        padre = (Conversor)parent;
     }
 
     /**
@@ -32,20 +34,14 @@ public class Insertar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldValor = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Insertar divisa nueva");
-
-        jLabel2.setText("Nombre");
-
-        jLabel3.setText("Valor");
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +49,12 @@ public class Insertar extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Insertar divisa nueva");
+
+        jLabel2.setText("Nombre");
+
+        jLabel3.setText("Valor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,50 +104,39 @@ public class Insertar extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Divisa divisa = new Divisa(Double.parseDouble(jTextFieldValor.getText()),jTextFieldNombre.getText());
+        
+        if(jTextFieldNombre.getText().isEmpty() || jTextFieldValor.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Debes rellenar los dos campos");
+            
+        }else{
+            if(jTextFieldValor.getText().matches("[0-9]+[.]*[0-9]*")){
+                Divisa divisa = new Divisa(Double.parseDouble(jTextFieldValor.getText()),jTextFieldNombre.getText());
+                boolean encontrado = false;
+                for (Divisa divisa1 : lista) {
+                    if(jTextFieldNombre.getText().equalsIgnoreCase(divisa1.getNombre())){
+                        encontrado = true;
+                    }
+                }
+                if (!encontrado) {
+                    lista.add(divisa);
+                    padre.jComboBoxElegir.addItem(jTextFieldNombre.getText());
+                    padre.setVisible(true);
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(rootPane,"Divisa Creada");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Esta divisa ya esta introducida");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Debes Introducir numeros");
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Insertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Insertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Insertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Insertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Insertar dialog = new Insertar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
