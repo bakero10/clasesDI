@@ -120,6 +120,8 @@ public class Insertar extends javax.swing.JDialog {
                 if (!encontrado) {
                     lista.add(divisa);
                     padre.jComboBoxElegir.addItem(jTextFieldNombre.getText());
+                    padre.jComboBoxElegir2.addItem(jTextFieldNombre.getText());
+                    
                     padre.setVisible(true);
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(rootPane,"Divisa Creada");
