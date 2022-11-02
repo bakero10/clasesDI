@@ -19,10 +19,16 @@ public class Insertar extends javax.swing.JDialog {
      */
      ArrayList<Divisa> lista = new ArrayList<Divisa>();
      Conversor padre;
+     Divisa euro = new Divisa(1,"Euro");
+    Divisa dolar = new Divisa(1.01,"Dolar");
+    Divisa lira = new Divisa(0.054,"Lira");
     public Insertar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (Conversor)parent;
+        lista.add(euro);
+        lista.add(dolar);
+        lista.add(lira);
     }
 
     /**
