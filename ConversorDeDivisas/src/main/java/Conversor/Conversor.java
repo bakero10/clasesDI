@@ -6,6 +6,7 @@ package Conversor;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
@@ -24,11 +25,9 @@ public class Conversor extends javax.swing.JFrame {
      * Creates new form Conversor
      */
     Insertar insertar = new Insertar(this, rootPaneCheckingEnabled);
-    Divisa euro = new Divisa(1,"Euro");
-    Divisa dolar = new Divisa(1.01,"Dolar");
-    Divisa lira = new Divisa(0.054,"Lira");
-    
-    
+    Divisa euro = new Divisa(1, "Euro");
+    Divisa dolar = new Divisa(1.01, "Dolar");
+    Divisa lira = new Divisa(0.054, "Lira");
 
     public Conversor() {
         initComponents();
@@ -161,8 +160,8 @@ public class Conversor extends javax.swing.JFrame {
                                     .addComponent(jLabelResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                                     .addComponent(jLabelImporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabelImagen)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -185,18 +184,19 @@ public class Conversor extends javax.swing.JFrame {
                                 .addComponent(jTextFieldEuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonNuevo)
                             .addComponent(jButton1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(75, 75, 75)
+                .addComponent(jLabelImagen)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         pack();
@@ -218,19 +218,26 @@ public class Conversor extends javax.swing.JFrame {
         double primerResultado = 0;
         double resultadoTotal = 0;
         double segundoResultado = 0;
-        if(jTextFieldEuros.getText().isEmpty()){
+        if (jTextFieldEuros.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Debes introducir el importe.");
-        }
-        else{
-        for (Divisa divisa : insertar.lista) {
-            if (divisa.getNombre().equalsIgnoreCase(jComboBoxElegir.getSelectedItem().toString())) {
-                primerResultado = divisa.getCantidad() * Double.parseDouble(jTextFieldEuros.getText());              
+        } else {
+            boolean primer_num_calculado = false;
+            for (Divisa divisa : insertar.lista) {
+                if (divisa.getNombre().equalsIgnoreCase(jComboBoxElegir.getSelectedItem().toString())) {
+                    primerResultado = divisa.getCantidad() * Double.parseDouble(jTextFieldEuros.getText());
+                    primer_num_calculado = true;
+                }
             }
-            if (divisa.getNombre().equalsIgnoreCase(jComboBoxElegir2.getSelectedItem().toString())) {
-                segundoResultado = divisa.getCantidad() * primerResultado;              
+
+            if (primer_num_calculado) {
+                for (Divisa divisa : insertar.lista) {
+                    if (divisa.getNombre().equalsIgnoreCase(jComboBoxElegir2.getSelectedItem().toString())) {
+                        segundoResultado = divisa.getCantidad() * Double.parseDouble(jTextFieldEuros.getText());
+                    }
+                }
+                jTextFieldResultado.setText(String.valueOf(segundoResultado));
             }
-            jTextFieldResultado.setText(String.valueOf(segundoResultado));
-        }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -273,13 +280,12 @@ public class Conversor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Conversor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Conversor().setVisible(true);
-                
-                
+
             }
         });
     }
