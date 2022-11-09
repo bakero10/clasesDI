@@ -5,8 +5,10 @@
 package horario;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Label;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,14 +25,24 @@ public class JFramePrincipal extends javax.swing.JFrame {
     
     public JFramePrincipal() {
         initComponents();
+        this.setTitle("HORARIOS");
+        this.setBackground(Color.BLUE);
         String semana [] = {"LUNES","MARTES","MIERCOLES","JUEVES","VIERNES"};
         Font f = new Font("Courier", Font.BOLD, 15);
         jLabelTitulo.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         jLabelTitulo.setVerticalAlignment((int) CENTER_ALIGNMENT);
+        jLabelTitulo.setFont(f);
         
-        for (int i=0;i<30;i++){
-            Button b = new Button(String.valueOf(i));
+        JButton b;
+        for (int i = 1; i < 7; i++) {
+            for (int j = 1; j < 6; j++) {
+                b = new JButton("jB" + j + "" + i);
+                b.setName(b.getText());
+                b.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+                b.setVerticalAlignment((int) CENTER_ALIGNMENT);
                 jPanelBotones.add(b);
+                
+            }
         }
         
         for (int i=0;i<5;i++){
@@ -54,6 +66,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabelTitulo = new javax.swing.JLabel();
         jPanelBotones = new javax.swing.JPanel();
         jPanelLabelSemanal = new javax.swing.JPanel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,24 +78,35 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelBotones.setLayout(new java.awt.GridLayout(6, 5));
 
         jPanelLabelSemanal.setBackground(new java.awt.Color(255, 255, 51));
-        jPanelLabelSemanal.setLayout(new java.awt.GridLayout());
+        jPanelLabelSemanal.setLayout(new java.awt.GridLayout(1, 0));
+
+        jMenu1.setText("Alta");
+        jMenuBar.add(jMenu1);
+
+        jMenu2.setText("Log");
+        jMenuBar.add(jMenu2);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelLabelSemanal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelLabelSemanal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jPanelLabelSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -123,6 +149,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelLabelSemanal;
     // End of variables declaration//GEN-END:variables
