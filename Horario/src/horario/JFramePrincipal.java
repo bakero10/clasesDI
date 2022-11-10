@@ -11,6 +11,7 @@ import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +22,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JFramePrincipal
      */
-    
+    DefaultTableModel tabla;
     
     public JFramePrincipal() {
         initComponents();
@@ -81,9 +82,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelLabelSemanal.setLayout(new java.awt.GridLayout(1, 0));
 
         jMenu1.setText("Alta");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar.add(jMenu1);
 
         jMenu2.setText("Log");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar.add(jMenu2);
 
         setJMenuBar(jMenuBar);
@@ -111,6 +122,18 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        JDialogAltasHoras altasHoras = new JDialogAltasHoras(this, true);
+        altasHoras.show();
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // TODO add your handling code here:
+        JDialogListado listado = new JDialogListado(this, true);
+        listado.show();
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments

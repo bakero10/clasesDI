@@ -4,6 +4,16 @@
  */
 package horario;
 
+import Datos.Alta;
+import Datos.ListaAltas;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.JButton;
+
 /**
  *
  * @author DAM2Alu1
@@ -13,14 +23,69 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
     /**
      * Creates new form JDialogAltasHoras
      */
+    Calendar calendario = new GregorianCalendar();
+    ListaAltas lista = new ListaAltas();
+    ArrayList<Alta> listaDefinitiva = lista.getLista();
+    JFramePrincipal padre;
     
     public JDialogAltasHoras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("ALTA HORAS");
+        padre = (JFramePrincipal) parent;
+        this.setTitle("ALTA HORAS");     
+        
+        
+     
+        
         
     }
-
+        //METODO QUE NOS DEVUELVE EL DIA SELECCIONADO
+      public String diaSeleccionado(){
+        String nombre = "";
+          if(jRadioButtonLunes.isSelected()){
+              nombre = "Lunes";
+          }
+          else if(jRadioButtonMartes.isSelected()){
+              nombre = "Martes";
+          }
+          else if(jRadioButtonMiercoles.isSelected()){
+              nombre = "Miercoles";
+          }
+          else if(jRadioButtonJueves.isSelected()){
+              nombre = "Jueves";
+          }
+          else if(jRadioButtonViernes.isSelected()){
+              nombre = "Viernes";
+          }
+          return nombre;
+    } 
+      
+      //METODO QUE NOS DEVUELVE LA HORA SELECCIONADA
+      public String horaSeleccionada(){
+          String hora = " ";
+          if(jCheckBox1.isSelected()){
+              hora = "8:25 9:20";
+          }
+         else if(jCheckBox2.isSelected()){
+              hora = "9:20 10:15";
+          }
+         else if(jCheckBox3.isSelected()){
+              hora = "11:40 12:35";
+          }
+         else if(jCheckBox4.isSelected()){
+              hora = "12:35 13:30";
+          }
+         else if(jCheckBox5.isSelected()){
+              hora = "10.15 11:10";
+          }
+         else if(jCheckBox6.isSelected()){
+             hora = "13:30 14:25";
+         } 
+          return hora;
+      }
+      
+      
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +112,7 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         jCheckBox6 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jButtonAnnadir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -163,6 +229,13 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
 
         jLabel1.setText("Modulo");
 
+        jButtonAnnadir.setText("Añadir");
+        jButtonAnnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnnadirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +249,9 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAnnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,7 +264,8 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAnnadir))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -200,51 +276,23 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogAltasHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogAltasHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogAltasHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogAltasHoras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButtonAnnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnadirActionPerformed
+        // TODO add your handling code here:
+        LocalDate fecha = LocalDate.now();
+        String fecha2 = String.valueOf(fecha);
+        String horaMinutos = String.valueOf(calendario.getTime().getHours()+":"+calendario.getTime().getMinutes());
+       Alta alta = new Alta(diaSeleccionado(),horaSeleccionada(),jTextField1.getText(),fecha2,horaMinutos);
+       listaDefinitiva.add(alta);
+       this.dispose();
+        
+    }//GEN-LAST:event_jButtonAnnadirActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogAltasHoras dialog = new JDialogAltasHoras(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupDias;
     private javax.swing.ButtonGroup buttonGroupHoras;
+    private javax.swing.JButton jButtonAnnadir;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
