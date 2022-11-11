@@ -5,7 +5,7 @@
 package horario;
 
 import Datos.Alta;
-import Datos.ListaAltas;
+import Datos.ArrayAltas;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,14 +25,15 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
      * Creates new form JDialogAltasHoras
      */
     Calendar calendario = new GregorianCalendar();
-    ListaAltas lista = new ListaAltas();
-    ArrayList<Alta> listaDefinitiva = lista.getLista();
+    ArrayAltas lista = new ArrayAltas();
+    public ArrayList<Alta> listaDefinitiva;
     JFramePrincipal padre;
     
     public JDialogAltasHoras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
+        listaDefinitiva = padre.listaAltas;
         this.setTitle("ALTA HORAS");     
         
         
@@ -278,13 +280,18 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
 
     private void jButtonAnnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnadirActionPerformed
         // TODO add your handling code here:
-        LocalDate fecha = LocalDate.now();
+       
+        if(buttonGroupDias.getSelection() == null || buttonGroupHoras.getSelection() == null || jTextField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debes de rellenar todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            LocalDate fecha = LocalDate.now();
         String fecha2 = String.valueOf(fecha);
-        String horaMinutos = String.valueOf(calendario.getTime().getHours()+":"+calendario.getTime().getMinutes());
+       String horaMinutos = String.valueOf(calendario.getTime().getHours()+":"+calendario.getTime().getMinutes());
        Alta alta = new Alta(diaSeleccionado(),horaSeleccionada(),jTextField1.getText(),fecha2,horaMinutos);
        listaDefinitiva.add(alta);
        this.dispose();
-        
+        }
     }//GEN-LAST:event_jButtonAnnadirActionPerformed
 
   

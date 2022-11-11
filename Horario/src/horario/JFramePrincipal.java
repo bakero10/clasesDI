@@ -4,10 +4,13 @@
  */
 package horario;
 
+import Datos.Alta;
+import Datos.ArrayAltas;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Label;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM2Alu1
  */
 public class JFramePrincipal extends javax.swing.JFrame {
+    
+    public ArrayList<Alta> listaAltas = new ArrayAltas().getLista();
 
     /**
      * Creates new form JFramePrincipal
@@ -72,6 +77,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(689, 426));
+        setSize(new java.awt.Dimension(689, 426));
 
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("HORARIO 2º DAM");
@@ -114,7 +121,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jPanelLabelSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))

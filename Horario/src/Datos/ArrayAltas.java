@@ -10,11 +10,11 @@ import java.util.ArrayList;
  *
  * @author DAM2Alu1
  */
-public class ListaAltas {
+public class ArrayAltas {
     
     ArrayList<Alta> lista;
     
-    public ListaAltas (){                   // CONSTRUCTOR VACIO
+    public ArrayAltas (){                   // CONSTRUCTOR VACIO
         this.lista = new ArrayList();
     }
 

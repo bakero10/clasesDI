@@ -5,25 +5,52 @@
 package horario;
 
 import Datos.Alta;
+import Datos.ArrayAltas;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyledEditorKit;
 
 /**
  *
  * @author DAM2Alu1
- */
+ */ 
+
+
 public class JDialogListado extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialogListado
      */
+    DefaultTableModel dtm;
     Alta alta;
     JFramePrincipal padre;
+    String [] cabecera = {"Día","Hora","Modulo","Fecha Alta","Hora Alta"};
+    ArrayList<Alta> listaAltas;
+    
     public JDialogListado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
+        listaAltas = padre.listaAltas;
         this.setTitle("LISTADO LOG");
+        dtm = new DefaultTableModel(cabecera,0);
+        this.setModal(false);
+        
+        for (Alta ob1  : listaAltas) {
+           String dato1 = ob1.getDia();
+           String dato2 = ob1.getHora();
+           String dato3 = ob1.getModulo();
+           String dato4 = ob1.getFechaAlta();
+           String dato5 = ob1.getHoraAlta();
+           String [] datos = {dato1,dato2,dato3,dato4,dato5};
+          dtm.addRow(datos);
+            
+        }
+        
+        jTable1.setModel(dtm);  //INTRODUCIMOS EL DTM EN LA TABLA
     }
-
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
