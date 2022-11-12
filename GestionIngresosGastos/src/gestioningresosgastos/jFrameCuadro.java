@@ -19,28 +19,26 @@ public class jFrameCuadro extends javax.swing.JFrame {
     
     // DECLARAMOS LA VARIABLE FILAS DE MANERA GLOBAL PARA PODER MODIFICAR Y/O ACTUALIZAR
     jFrameCuadro jTablePadre;
-    JDialogIngresoGasto jDialogIngresos_gastos;
+    JDialogIngresoGasto jDialogIngresosGastos;
     
     boolean jButtonAltaIngresoGastoApretado = false;
     boolean jMenuItemIngresosApretado = false;
     boolean jMenuItemGastosApretado = false;
     
-    DefaultTableModel disenoIngresosGastos;
-    DefaultTableModel disenoTablaIngresos;
-    DefaultTableModel disenoTablaGastos;
-    
-    
+    DefaultTableModel dtmIngresosGastos;
+    DefaultTableModel dtmTablaIngresos;
+    DefaultTableModel dtmTablaGastos;
     
     String cabeceraTabla [] = {"Fecha","Concepto","Ingreso","Gasto"}; //ESTO SALDRA EN LA CABECERA DE LA TABLA
     public jFrameCuadro() {
         initComponents();
         this.setTitle("Programa de Gestión de Ingresos y Gastos");
-        jDialogIngresos_gastos = new JDialogIngresoGasto(this, true);  //DIALOG ES UNA NUEVA VENTANA DIALOG Y LE DECIMOS QUE...(EL PADRE ES ESTE ,Y QUE ES UNA VENTANA MODAL ''TRUE'';
-        disenoIngresosGastos = new DefaultTableModel(cabeceraTabla,0); //METEMOS EN EL JFRAME LA TABLA INGRESOS CON....(EL STRING DE LA CABECERA Y CON 0 FILAS POR DEFECTO)
-        disenoTablaIngresos = new DefaultTableModel(cabeceraTabla,0);
-        disenoTablaGastos = new DefaultTableModel(cabeceraTabla,0);
+        jDialogIngresosGastos = new JDialogIngresoGasto(this, true);  //DIALOG ES UNA NUEVA VENTANA DIALOG Y LE DECIMOS QUE...(EL PADRE ES ESTE ,Y QUE ES UNA VENTANA MODAL ''TRUE'';
+        dtmIngresosGastos = new DefaultTableModel(cabeceraTabla,0); //METEMOS EN EL JFRAME LA TABLA INGRESOS CON....(EL STRING DE LA CABECERA Y CON 0 FILAS POR DEFECTO)
+        dtmTablaIngresos = new DefaultTableModel(cabeceraTabla,0);
+        dtmTablaGastos = new DefaultTableModel(cabeceraTabla,0);
         //PONEMOS LA VENTANA QUE QUEREMOS MOSTRAR CUANDO ARRANQUEMOS EL PROGRAMA
-        jTable1.setModel(disenoIngresosGastos);
+        jTable1.setModel(dtmIngresosGastos);
         //PONEMOS EL RADIOBUTTON VER TODO POR DEFECTO
         jRadioButtonTodo.setSelected(true);
         
@@ -192,17 +190,17 @@ public class jFrameCuadro extends javax.swing.JFrame {
 
     private void jRadioButtonTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonTodoActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(disenoIngresosGastos);
+        jTable1.setModel(dtmIngresosGastos);
     }//GEN-LAST:event_jRadioButtonTodoActionPerformed
 
     private void jRadioButtonIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonIngresosActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(disenoTablaIngresos);
+        jTable1.setModel(dtmTablaIngresos);
     }//GEN-LAST:event_jRadioButtonIngresosActionPerformed
 
     private void jRadioButtonGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGastosActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(disenoTablaGastos);
+        jTable1.setModel(dtmTablaGastos);
     }//GEN-LAST:event_jRadioButtonGastosActionPerformed
 
     private void jButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirActionPerformed
@@ -230,16 +228,16 @@ public class jFrameCuadro extends javax.swing.JFrame {
     //CUANDO SE APRETE EL BOTON SE INICIARA EL JDIALOG
     public void actualizarDatos(){
         if(jButtonAltaIngresoGastoApretado){
-            jDialogIngresos_gastos = new JDialogIngresoGasto(this, true);
-            jDialogIngresos_gastos.setVisible(true);
+            jDialogIngresosGastos = new JDialogIngresoGasto(this, true);
+            jDialogIngresosGastos.setVisible(true);
         }
         else if(jMenuItemIngresosApretado){
-            jDialogIngresos_gastos = new JDialogIngresoGasto(this, true);
-            jDialogIngresos_gastos.setVisible(true);
+            jDialogIngresosGastos = new JDialogIngresoGasto(this, true);
+            jDialogIngresosGastos.setVisible(true);
         }
         else if(jMenuItemGastosApretado){
-            jDialogIngresos_gastos = new JDialogIngresoGasto(this, true);
-            jDialogIngresos_gastos.setVisible(true);
+            jDialogIngresosGastos = new JDialogIngresoGasto(this, true);
+            jDialogIngresosGastos.setVisible(true);
         }
         
     }

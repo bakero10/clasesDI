@@ -54,20 +54,21 @@ public class JDialogIngresoGasto extends javax.swing.JDialog {
         padre.jMenuItemIngresosApretado = false;
     }
     
+    //METODO INSERTAR DATOS EN TABLAS
     public void insertarDatos(String [] registro,String tabla){
-        padre.disenoIngresosGastos.addRow(registro);
+        padre.dtmIngresosGastos.addRow(registro);
         jTextFieldImporte.setText("0.00");
         jTextFieldConcepto.setText(" ");
         jSpinnerFecha.setValue(calendario.getTime());
         
         if(tabla.equalsIgnoreCase("tablaGasto")){
-            padre.disenoTablaGastos.addRow(registro);
+            padre.dtmTablaGastos.addRow(registro);
         jTextFieldImporte.setText("0.00");
         jTextFieldConcepto.setText(" ");
         jSpinnerFecha.setValue(calendario.getTime());
         }
         else if(tabla.equalsIgnoreCase("tablaIngreso")){
-            padre.disenoTablaIngresos.addRow(registro);
+            padre.dtmTablaIngresos.addRow(registro);
         jTextFieldImporte.setText("0.00");
         jTextFieldConcepto.setText(" ");
         jSpinnerFecha.setValue(calendario.getTime());
@@ -226,10 +227,7 @@ public class JDialogIngresoGasto extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Solo puedes introducir numeros positivos y negativos","Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        
         padre.balance();
-        
-        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
