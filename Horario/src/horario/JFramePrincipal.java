@@ -6,14 +6,14 @@ package horario;
 
 import Datos.Alta;
 import Datos.ArrayAltas;
-import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
-import java.awt.Label;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,43 +21,95 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM2Alu1
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-    
+
     public ArrayList<Alta> listaAltas = new ArrayAltas().getLista();
+    public String semana[] = {"LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES"};
+    public String horas[] = {"8:25 9:20", "9:20 10:15", "10:15 11:10", "11:40 12:35", "12:35 13:30", "13:30 14:25"};
 
     /**
      * Creates new form JFramePrincipal
      */
     DefaultTableModel tabla;
-    
+
     public JFramePrincipal() {
         initComponents();
         this.setTitle("HORARIOS");
         this.setBackground(Color.BLUE);
-        String semana [] = {"LUNES","MARTES","MIERCOLES","JUEVES","VIERNES"};
+
         Font f = new Font("Courier", Font.BOLD, 15);
         jLabelTitulo.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         jLabelTitulo.setVerticalAlignment((int) CENTER_ALIGNMENT);
         jLabelTitulo.setFont(f);
-        
+
         JButton b;
-        for (int i = 1; i < 7; i++) {
-            for (int j = 1; j < 6; j++) {
-                b = new JButton("jB" + j + "" + i);
-                b.setName(b.getText());
+        for (int i = 1; i < 7; i++) { // horas
+            for (int j = 1; j < 6; j++) { // dias
+                b = new JButton();
+                b.setName("jB" + j + "" + i);
                 b.setHorizontalAlignment((int) CENTER_ALIGNMENT);
                 b.setVerticalAlignment((int) CENTER_ALIGNMENT);
                 jPanelBotones.add(b);
-                
+
             }
         }
-        
-        for (int i=0;i<5;i++){
+
+        for (int i = 0; i < 5; i++) {
             JLabel l = new JLabel(String.valueOf(semana[i]));
             l.setHorizontalAlignment((int) CENTER_ALIGNMENT);
             l.setVerticalAlignment((int) CENTER_ALIGNMENT);
             l.setFont(f);
             jPanelLabelSemanal.add(l);
         }
+    }
+
+    public void pasarListaAbotones() {
+        String textoBoton;
+        Alta alta;
+        String numDia;
+        String numHora;
+        String diaHora;
+        JButton b;
+        for (int i = 0; i < listaAltas.size(); i++) { // por cada Alta de la lista hacer...
+            textoBoton = "jB";
+            alta = listaAltas.get(i);
+            // recorremos cada día para compararlo con el día de la alta realizada
+            for (int j = 0; j < semana.length; j++) {
+                if (alta.getDia().equalsIgnoreCase(semana[j])) {
+                    textoBoton += j + 1;
+                }
+            }
+
+            // recorremos cada hora del dia
+            for (int j = 0; j < horas.length; j++) {
+                if (alta.getHora().equalsIgnoreCase(horas[j])) {
+                    textoBoton += j + 1;
+                }
+            }
+            // METODO PARA INTRODUCIR EL TEXTO CORRESPONDIENTE EN LOS BOTONES
+            for (int j = 1; j < 7; j++) { // horas
+            numHora = String.valueOf(j);
+            for (int k = 1; k < 6; k++) { // dias
+                numDia = String.valueOf(k);
+                diaHora = numDia + numHora;
+                if (textoBoton.toLowerCase().contains(diaHora.toLowerCase())) {
+                    b = recogerBotonPorName(textoBoton);
+                    b.setText(alta.getModulo());
+                }
+
+            }
+        }
+
+        }
+    }
+
+    public JButton recogerBotonPorName(String name) {
+        Component[] listaComponentes = jPanelBotones.getComponents();
+        for (int i = 0; i < listaComponentes.length; i++) {
+            if (listaComponentes[i].getName().toLowerCase().equalsIgnoreCase(name.toLowerCase())) {
+                return (JButton) listaComponentes[i];
+            }
+        }
+        return null;
     }
 
     /**
@@ -121,10 +173,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelLabelSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,12 +204,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

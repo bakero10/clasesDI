@@ -7,6 +7,11 @@ package horario;
 import Datos.Alta;
 import Datos.ArrayAltas;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.StyledEditorKit;
 
@@ -24,6 +29,7 @@ public class JDialogListado extends javax.swing.JDialog {
     DefaultTableModel dtm;
     Alta alta;
     JFramePrincipal padre;
+    
     String [] cabecera = {"Día","Hora","Modulo","Fecha Alta","Hora Alta"};
     ArrayList<Alta> listaAltas;
     
@@ -34,8 +40,17 @@ public class JDialogListado extends javax.swing.JDialog {
         listaAltas = padre.listaAltas;
         this.setTitle("LISTADO LOG");
         dtm = new DefaultTableModel(cabecera,0);
-        this.setModal(false);
+        this.setModal(false);       
         
+        
+        // METODO PARA DECIRLE QUE LAS CELDAS DE LA TABLA NO SEAN EDITABLES
+        dtm = new DefaultTableModel(cabecera, 0) {
+             public boolean isCellEditable(int rowIndex,int columnIndex){
+                 return false;
+             }
+         };
+        
+        // INTRODUCCION DE DATOS EN LA TABLA 
         for (Alta ob1  : listaAltas) {
            String dato1 = ob1.getDia();
            String dato2 = ob1.getHora();
@@ -45,13 +60,10 @@ public class JDialogListado extends javax.swing.JDialog {
            String [] datos = {dato1,dato2,dato3,dato4,dato5};
           dtm.addRow(datos);
             
-        }
-        
+        }        
         jTable1.setModel(dtm);  //INTRODUCIMOS EL DTM EN LA TABLA
+
     }
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +91,11 @@ public class JDialogListado extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,6 +113,21 @@ public class JDialogListado extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+       String [] datos ;
+        if(evt.getClickCount() == 2){
+           if (JOptionPane.showConfirmDialog(null, "¿Desea borrar el registro?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0){
+             int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint()); 
+             padre.listaAltas.remove(filaSeleccionada);
+             dtm.removeRow(filaSeleccionada);
+             
+               // String nombre = jTable1MouseClicked(evt.getID());
+              // System.out.println(nombre);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
     
     
     

@@ -122,6 +122,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Lunes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonLunesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButtonMartes">
           <Properties>

@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
 
 /**
  *
@@ -28,66 +29,54 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
     ArrayAltas lista = new ArrayAltas();
     public ArrayList<Alta> listaDefinitiva;
     JFramePrincipal padre;
-    
+
     public JDialogAltasHoras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
         listaDefinitiva = padre.listaAltas;
-        this.setTitle("ALTA HORAS");     
-        
-        
-     
-        
-        
+        this.setTitle("ALTA HORAS");
+
     }
-        //METODO QUE NOS DEVUELVE EL DIA SELECCIONADO
-      public String diaSeleccionado(){
+    //METODO QUE NOS DEVUELVE EL DIA SELECCIONADO
+
+    public String diaSeleccionado() {
         String nombre = "";
-          if(jRadioButtonLunes.isSelected()){
-              nombre = "Lunes";
-          }
-          else if(jRadioButtonMartes.isSelected()){
-              nombre = "Martes";
-          }
-          else if(jRadioButtonMiercoles.isSelected()){
-              nombre = "Miercoles";
-          }
-          else if(jRadioButtonJueves.isSelected()){
-              nombre = "Jueves";
-          }
-          else if(jRadioButtonViernes.isSelected()){
-              nombre = "Viernes";
-          }
-          return nombre;
-    } 
-      
-      //METODO QUE NOS DEVUELVE LA HORA SELECCIONADA
-      public String horaSeleccionada(){
-          String hora = " ";
-          if(jCheckBox1.isSelected()){
-              hora = "8:25 9:20";
-          }
-         else if(jCheckBox2.isSelected()){
-              hora = "9:20 10:15";
-          }
-         else if(jCheckBox3.isSelected()){
-              hora = "11:40 12:35";
-          }
-         else if(jCheckBox4.isSelected()){
-              hora = "12:35 13:30";
-          }
-         else if(jCheckBox5.isSelected()){
-              hora = "10.15 11:10";
-          }
-         else if(jCheckBox6.isSelected()){
-             hora = "13:30 14:25";
-         } 
-          return hora;
-      }
-      
-      
-      
+        if (jRadioButtonLunes.isSelected()) {
+            nombre = "Lunes";
+        } else if (jRadioButtonMartes.isSelected()) {
+            nombre = "Martes";
+        } else if (jRadioButtonMiercoles.isSelected()) {
+            nombre = "Miercoles";
+        } else if (jRadioButtonJueves.isSelected()) {
+            nombre = "Jueves";
+        } else if (jRadioButtonViernes.isSelected()) {
+            nombre = "Viernes";
+        }
+        return nombre;
+    }
+
+    //METODO QUE NOS DEVUELVE LA HORA SELECCIONADA
+    public String horaSeleccionada() {
+        String hora = " ";
+        if (jCheckBox1.isSelected()) {
+            hora = "8:25 9:20";
+        } else if (jCheckBox2.isSelected()) {
+            hora = "9:20 10:15";
+        } else if (jCheckBox3.isSelected()) {
+            hora = "11:40 12:35";
+        } else if (jCheckBox4.isSelected()) {
+            hora = "12:35 13:30";
+        } else if (jCheckBox5.isSelected()) {
+            hora = "10:15 11:10";
+        } else if (jCheckBox6.isSelected()) {
+            hora = "13:30 14:25";
+        }
+        return hora;
+    }
+
+   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,10 +108,15 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Día", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Día", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
 
         buttonGroupDias.add(jRadioButtonLunes);
         jRadioButtonLunes.setText("Lunes");
+        jRadioButtonLunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonLunesActionPerformed(evt);
+            }
+        });
 
         buttonGroupDias.add(jRadioButtonMartes);
         jRadioButtonMartes.setText("Martes");
@@ -166,7 +160,7 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
 
         buttonGroupHoras.add(jCheckBox1);
         jCheckBox1.setText("8:25 9:20");
@@ -280,21 +274,28 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
 
     private void jButtonAnnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnadirActionPerformed
         // TODO add your handling code here:
-       
-        if(buttonGroupDias.getSelection() == null || buttonGroupHoras.getSelection() == null || jTextField1.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debes de rellenar todos los campos","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+
+        if (buttonGroupDias.getSelection() == null || buttonGroupHoras.getSelection() == null || jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debes de rellenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             LocalDate fecha = LocalDate.now();
-        String fecha2 = String.valueOf(fecha);
-       String horaMinutos = String.valueOf(calendario.getTime().getHours()+":"+calendario.getTime().getMinutes());
-       Alta alta = new Alta(diaSeleccionado(),horaSeleccionada(),jTextField1.getText(),fecha2,horaMinutos);
-       listaDefinitiva.add(alta);
-       this.dispose();
+            String fecha2 = String.valueOf(fecha);
+            String horaMinutos = String.valueOf(calendario.getTime().getHours() + ":" + calendario.getTime().getMinutes());
+            Alta alta = new Alta(diaSeleccionado(), horaSeleccionada(), jTextField1.getText(), fecha2, horaMinutos);
+            listaDefinitiva.add(alta);
+            this.dispose();
         }
+        
+        // padre.listaAltas.forEach(System.out::println); recorrer lista desde el padre
+        padre.pasarListaAbotones();
+
     }//GEN-LAST:event_jButtonAnnadirActionPerformed
 
-  
+    private void jRadioButtonLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLunesActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jRadioButtonLunesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupDias;
