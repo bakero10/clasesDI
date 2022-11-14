@@ -12,14 +12,23 @@ import java.awt.Toolkit;
  *
  * @author Bakero
  */
+
+ 
 public class JFramePrincipal extends javax.swing.JFrame {
 
     /** Creates new form JFramePrincipal */
+     JDialogClientes jdialogclientes;
     public JFramePrincipal() {
         initComponents();
         this.setTitle("Talleres Fitipaldi");
+        
     }
 
+    
+    
+    
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -30,12 +39,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelPanelAcceso = new javax.swing.JLabel();
-        jLabelUsuario = new javax.swing.JLabel();
-        jTextFieldUsuario = new javax.swing.JTextField();
-        jLabelContraseña = new javax.swing.JLabel();
-        jPasswordFieldContraseña = new javax.swing.JPasswordField();
-        jButtonAcceder = new javax.swing.JButton();
+        jButtonNocturno = new javax.swing.JButton();
+        jButtonClientes = new javax.swing.JButton();
+        jButtonReparaciones = new javax.swing.JButton();
+        jButtonVehiculos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,26 +51,26 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelPanelAcceso.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelPanelAcceso.setText("Panel de Acceso");
-        jPanel1.add(jLabelPanelAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 120, 20));
+        jButtonNocturno.setText("Nocturno");
+        jPanel1.add(jButtonNocturno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 160, 50));
 
-        jLabelUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelUsuario.setText("Usuario");
-        jPanel1.add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 110, 20));
-        jPanel1.add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 150, 30));
+        jButtonClientes.setText("Clientes");
+        jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 130, 50));
 
-        jLabelContraseña.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelContraseña.setText("Contraseña");
-        jPanel1.add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 140, 30));
-        jPanel1.add(jPasswordFieldContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 30));
+        jButtonReparaciones.setText("Reparaciones");
+        jPanel1.add(jButtonReparaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, 50));
 
-        jButtonAcceder.setText("Acceder");
-        jPanel1.add(jButtonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 150, 40));
+        jButtonVehiculos.setText("Vehiculos");
+        jPanel1.add(jButtonVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 130, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/67233-mecanica.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(600, 400));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 570));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +89,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
+        // TODO add your handling code here:
+        
+        jdialogclientes = new JDialogClientes(this, true);
+        jdialogclientes.rellenarLista();
+        jdialogclientes.show();
+       
+    }//GEN-LAST:event_jButtonClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,14 +142,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAcceder;
+    private javax.swing.JButton jButtonClientes;
+    private javax.swing.JButton jButtonNocturno;
+    private javax.swing.JButton jButtonReparaciones;
+    private javax.swing.JButton jButtonVehiculos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelContraseña;
-    private javax.swing.JLabel jLabelPanelAcceso;
-    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldContraseña;
-    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 
 }

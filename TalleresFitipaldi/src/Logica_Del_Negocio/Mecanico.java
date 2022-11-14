@@ -8,12 +8,12 @@ package Logica_Del_Negocio;
  *
  * @author Bakero
  */
-public class DatosMecanico {
+public class Mecanico {
     
     private String usuario;
     private String contraseña;
 
-    public DatosMecanico(String usuario, String contraseña) {
+    public Mecanico(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }

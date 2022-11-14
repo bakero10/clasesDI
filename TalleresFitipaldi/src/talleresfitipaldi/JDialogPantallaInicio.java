@@ -4,7 +4,7 @@
  */
 package talleresfitipaldi;
 
-import Logica_Del_Negocio.DatosMecanico;
+import Logica_Del_Negocio.Mecanico;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,9 +20,12 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
     /**
      * Creates new form JDialogPantallaInicio
      */
+    Mecanico mecanico;
     public JDialogPantallaInicio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        mecanico = new Mecanico ("Juan","juan");
+        mecanico = new Mecanico ("Pepe","pepe");
         jLabelPanelAcceso.setForeground(Color.WHITE);
         jLabelContraseña.setForeground(Color.WHITE);
         jLabelUsuario.setForeground(Color.WHITE);
@@ -77,7 +80,7 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         jPanel1.add(jLabelPanelAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/67233-mecanica.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 470));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +90,7 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,7 +98,7 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
 
     private void jButtonAccesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAccesoMouseClicked
         // TODO add your handling code here:
-       DatosMecanico dm = new DatosMecanico("Admin","Bakero");
+       Mecanico dm = new Mecanico("Admin","Bakero");
       
         
         String Pass = new String(jPasswordField1.getPassword());
