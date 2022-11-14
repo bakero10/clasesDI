@@ -63,12 +63,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     public void pasarListaAbotones() {
-        String textoBoton;
+        String textoBoton = "";
         Alta alta;
         String numDia;
         String numHora;
         String diaHora;
-        JButton b;
+        JButton b = null;
         for (int i = 0; i < listaAltas.size(); i++) { // por cada Alta de la lista hacer...
             textoBoton = "jB";
             alta = listaAltas.get(i);
@@ -87,17 +87,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
             // METODO PARA INTRODUCIR EL TEXTO CORRESPONDIENTE EN LOS BOTONES
             for (int j = 1; j < 7; j++) { // horas
-            numHora = String.valueOf(j);
-            for (int k = 1; k < 6; k++) { // dias
-                numDia = String.valueOf(k);
-                diaHora = numDia + numHora;
-                if (textoBoton.toLowerCase().contains(diaHora.toLowerCase())) {
-                    b = recogerBotonPorName(textoBoton);
-                    b.setText(alta.getModulo());
-                }
+                numHora = String.valueOf(j);
+                for (int k = 1; k < 6; k++) { // dias
+                    numDia = String.valueOf(k);
+                    diaHora = numDia + numHora;
+                    if (textoBoton.toLowerCase().contains(diaHora.toLowerCase())) {
+                        b = recogerBotonPorName(textoBoton);
+                        b.setText(alta.getModulo());
+                    }
 
+                }
             }
-        }
 
         }
     }
@@ -110,6 +110,32 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         }
         return null;
+    }
+
+    public void elminiarTexto() {
+        Component[] listaComponentes = jPanelBotones.getComponents();
+        JButton b;
+        for (int i = 0; i < listaComponentes.length; i++) {
+            b = (JButton) listaComponentes[i];
+            if (!b.getText().isEmpty()) {
+                b.setText("");
+            }
+        }
+        
+    }
+    
+    public void elminiarTexto2() {
+        // METODO QUE ELIMINA TODOS LOS TEXTOS 
+        JButton b=null;
+        String textoBoton = "jB";
+        for (int j = 1; j < 7; j++) { // horas
+            for (int k = 1; k < 6; k++) { // dias
+                textoBoton += k + j;
+                
+                
+
+            }
+        }
     }
 
     /**

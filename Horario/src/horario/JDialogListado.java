@@ -18,9 +18,7 @@ import javax.swing.text.StyledEditorKit;
 /**
  *
  * @author DAM2Alu1
- */ 
-
-
+ */
 public class JDialogListado extends javax.swing.JDialog {
 
     /**
@@ -29,41 +27,41 @@ public class JDialogListado extends javax.swing.JDialog {
     DefaultTableModel dtm;
     Alta alta;
     JFramePrincipal padre;
-    
-    String [] cabecera = {"Día","Hora","Modulo","Fecha Alta","Hora Alta"};
+
+    String[] cabecera = {"Día", "Hora", "Modulo", "Fecha Alta", "Hora Alta"};
     ArrayList<Alta> listaAltas;
-    
+
     public JDialogListado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
         listaAltas = padre.listaAltas;
         this.setTitle("LISTADO LOG");
-        dtm = new DefaultTableModel(cabecera,0);
-        this.setModal(false);       
-        
-        
+        dtm = new DefaultTableModel(cabecera, 0);
+        this.setModal(false);
+
         // METODO PARA DECIRLE QUE LAS CELDAS DE LA TABLA NO SEAN EDITABLES
         dtm = new DefaultTableModel(cabecera, 0) {
-             public boolean isCellEditable(int rowIndex,int columnIndex){
-                 return false;
-             }
-         };
-        
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+
         // INTRODUCCION DE DATOS EN LA TABLA 
-        for (Alta ob1  : listaAltas) {
-           String dato1 = ob1.getDia();
-           String dato2 = ob1.getHora();
-           String dato3 = ob1.getModulo();
-           String dato4 = ob1.getFechaAlta();
-           String dato5 = ob1.getHoraAlta();
-           String [] datos = {dato1,dato2,dato3,dato4,dato5};
-          dtm.addRow(datos);
-            
-        }        
+        for (Alta ob1 : listaAltas) {
+            String dato1 = ob1.getDia();
+            String dato2 = ob1.getHora();
+            String dato3 = ob1.getModulo();
+            String dato4 = ob1.getFechaAlta();
+            String dato5 = ob1.getHoraAlta();
+            String[] datos = {dato1, dato2, dato3, dato4, dato5};
+            dtm.addRow(datos);
+
+        }
         jTable1.setModel(dtm);  //INTRODUCIMOS EL DTM EN LA TABLA
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,21 +114,21 @@ public class JDialogListado extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-       String [] datos ;
-        if(evt.getClickCount() == 2){
-           if (JOptionPane.showConfirmDialog(null, "¿Desea borrar el registro?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0){
-             int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint()); 
-             padre.listaAltas.remove(filaSeleccionada);
-             dtm.removeRow(filaSeleccionada);
-             
-               // String nombre = jTable1MouseClicked(evt.getID());
-              // System.out.println(nombre);
+        String[] datos;
+        if (evt.getClickCount() == 2) {
+            if (JOptionPane.showConfirmDialog(null, "¿Desea borrar el registro?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint());
+                padre.listaAltas.remove(filaSeleccionada);
+                dtm.removeRow(filaSeleccionada);
+//               for (Alta listaAlta : listaAltas) {
+//                   System.out.println(listaAlta);
+//               }
+                padre.elminiarTexto();
+                padre.pasarListaAbotones();
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
