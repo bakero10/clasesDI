@@ -5,8 +5,10 @@
 
 package talleresfitipaldi;
 
+import Logica_Del_Negocio.Cliente;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +20,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     /** Creates new form JFramePrincipal */
      JDialogClientes jdialogclientes;
+     JDialogVehiculos jDialogVehiculos;
+     Cliente cliente;
+     ArrayList<Cliente> lista;
     public JFramePrincipal() {
         initComponents();
         this.setTitle("Talleres Fitipaldi");
@@ -66,6 +71,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanel1.add(jButtonReparaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, 50));
 
         jButtonVehiculos.setText("Vehiculos");
+        jButtonVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVehiculosActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 130, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/67233-mecanica.jpg"))); // NOI18N
@@ -98,6 +108,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jdialogclientes.show();
        
     }//GEN-LAST:event_jButtonClientesActionPerformed
+
+    private void jButtonVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVehiculosActionPerformed
+        // TODO add your handling code here:
+        jDialogVehiculos = new JDialogVehiculos(this, true);
+        jDialogVehiculos.show();
+        
+    }//GEN-LAST:event_jButtonVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
