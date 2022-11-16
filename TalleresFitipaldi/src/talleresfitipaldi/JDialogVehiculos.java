@@ -21,20 +21,23 @@ public class JDialogVehiculos extends javax.swing.JDialog {
     JFramePrincipal padre;
     DefaultTableModel dtm;  
     JDialogClientes jdialogclientes;
+    String [] coches = {"Marca","Modelo","Matricula"};
     Coche coche;
     public JDialogVehiculos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
+        dtm = new DefaultTableModel(coches,0);
+        jTable1.setModel(dtm);      //DECIRLE QUE LA EL MODELO DE LA TABLA PARA QUE SE MUESTRE
         
-        String [] coches = {"Marca","Modelo","Matriculo"};
-          dtm = new DefaultTableModel(coches,0);
-          
-        for (coche coches : jdialogclientes.llenarTabla()) {
-            dtm.addRow(coche);
+        for (Coche coche1 : padre.lista2) {
+            System.out.println("Hola");
+            System.out.println(coche1);
         }
-          
-          
+        
+        
+       
+                
     }
 
     

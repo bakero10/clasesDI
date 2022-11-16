@@ -62,7 +62,7 @@ public class JDialogIngresoGasto extends javax.swing.JDialog {
         jSpinnerFecha.setValue(calendario.getTime());
         
         if(tabla.equalsIgnoreCase("tablaGasto")){
-            padre.dtmTablaGastos.addRow(registro);
+        padre.dtmTablaGastos.addRow(registro);
         jTextFieldImporte.setText("0.00");
         jTextFieldConcepto.setText(" ");
         jSpinnerFecha.setValue(calendario.getTime());
