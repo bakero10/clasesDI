@@ -57,23 +57,23 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
     }
 
     //METODO QUE NOS DEVUELVE LA HORA SELECCIONADA
-    public String horaSeleccionada() {
+   /* public String horaSeleccionada() {
         String hora = " ";
         if (jCheckBox1.isSelected()) {
             hora = "8:25 9:20";
         } else if (jCheckBox2.isSelected()) {
             hora = "9:20 10:15";
         } else if (jCheckBox3.isSelected()) {
-            hora = "11:40 12:35";
-        } else if (jCheckBox4.isSelected()) {
-            hora = "12:35 13:30";
-        } else if (jCheckBox5.isSelected()) {
             hora = "10:15 11:10";
+        } else if (jCheckBox4.isSelected()) {
+            hora = "11:40 12:35";
+        } else if (jCheckBox5.isSelected()) {
+            hora = "12:35 13:30";
         } else if (jCheckBox6.isSelected()) {
             hora = "13:30 14:25";
         }
         return hora;
-    }
+    }*/
 
    
 
@@ -87,7 +87,6 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroupDias = new javax.swing.ButtonGroup();
-        buttonGroupHoras = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jRadioButtonLunes = new javax.swing.JRadioButton();
         jRadioButtonMartes = new javax.swing.JRadioButton();
@@ -97,10 +96,10 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButtonAnnadir = new javax.swing.JButton();
@@ -108,7 +107,7 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Día", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Día", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
 
         buttonGroupDias.add(jRadioButtonLunes);
         jRadioButtonLunes.setText("Lunes");
@@ -160,30 +159,29 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(51, 51, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(51, 51, 255))); // NOI18N
 
-        buttonGroupHoras.add(jCheckBox1);
         jCheckBox1.setText("8:25 9:20");
 
-        buttonGroupHoras.add(jCheckBox2);
         jCheckBox2.setText("9:20 10:15");
 
-        buttonGroupHoras.add(jCheckBox3);
-        jCheckBox3.setText("11:40 12:35");
+        jCheckBox4.setText("11:40 12:35");
 
-        buttonGroupHoras.add(jCheckBox4);
-        jCheckBox4.setText("12:35 13:30");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox5.setText("12:35 13:30");
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                jCheckBox5ActionPerformed(evt);
             }
         });
 
-        buttonGroupHoras.add(jCheckBox5);
-        jCheckBox5.setText("10.15 11:10");
-
-        buttonGroupHoras.add(jCheckBox6);
         jCheckBox6.setText("13:30 14:25");
+
+        jCheckBox7.setText("10:15 11:10");
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -193,18 +191,17 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCheckBox3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckBox4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
                         .addGap(66, 66, 66)
                         .addComponent(jCheckBox2)
-                        .addGap(52, 52, 52)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox5))
+                        .addGap(58, 58, 58)
+                        .addComponent(jCheckBox7)))
                 .addGap(60, 60, 60))
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,12 +211,12 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox5))
+                    .addComponent(jCheckBox7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
+                    .addComponent(jCheckBox5)
                     .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3))
+                    .addComponent(jCheckBox4))
                 .addGap(9, 9, 9))
         );
 
@@ -268,21 +265,45 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jButtonAnnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnadirActionPerformed
         // TODO add your handling code here:
-
-        if (buttonGroupDias.getSelection() == null || buttonGroupHoras.getSelection() == null || jTextField1.getText().isEmpty()) {
+        ArrayList<String> horas = new ArrayList<>();
+       
+        if(jCheckBox1.isSelected()){
+            horas.add(jCheckBox1.getText());
+        }
+        if(jCheckBox2.isSelected()){
+            horas.add(jCheckBox2.getText());
+        }
+        if(jCheckBox7.isSelected()){
+            horas.add(jCheckBox7.getText());
+        }
+        if(jCheckBox4.isSelected()){
+            horas.add(jCheckBox4.getText());
+        }
+        if(jCheckBox5.isSelected()){
+            horas.add(jCheckBox5.getText());
+        }
+        if(jCheckBox6.isSelected()){
+            horas.add(jCheckBox6.getText());
+        }
+        
+        if (buttonGroupDias.getSelection() == null ||  jTextField1.getText().isEmpty())  {
             JOptionPane.showMessageDialog(null, "Debes de rellenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             LocalDate fecha = LocalDate.now();
             String fecha2 = String.valueOf(fecha);
             String horaMinutos = String.valueOf(calendario.getTime().getHours() + ":" + calendario.getTime().getMinutes());
-            Alta alta = new Alta(diaSeleccionado(), horaSeleccionada(), jTextField1.getText(), fecha2, horaMinutos);
-            listaDefinitiva.add(alta);
+            for (String hora : horas) {
+                 Alta alta = new Alta(diaSeleccionado(), hora, jTextField1.getText(), fecha2, horaMinutos);
+                 listaDefinitiva.add(alta);
+            }
+           
+            
             this.dispose();
         }
         
@@ -296,17 +317,20 @@ public class JDialogAltasHoras extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jRadioButtonLunesActionPerformed
 
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupDias;
-    private javax.swing.ButtonGroup buttonGroupHoras;
     private javax.swing.JButton jButtonAnnadir;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
