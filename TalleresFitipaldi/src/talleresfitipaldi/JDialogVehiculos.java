@@ -24,6 +24,7 @@ public class JDialogVehiculos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
+        this.setTitle("Gestión de vehiculos");
        
         
          String cabecera [] = {"Marca","Modelo","Matricula","Mecanico"};

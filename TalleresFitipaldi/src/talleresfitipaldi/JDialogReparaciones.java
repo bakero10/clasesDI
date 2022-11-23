@@ -99,6 +99,11 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButtonAlmacen.setText("Almacen");
+        jButtonAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlmacenActionPerformed(evt);
+            }
+        });
 
         buttonGroupReparaciones.add(jRadioButtonJuan);
         jRadioButtonJuan.setText("Juan");
@@ -167,6 +172,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGeneralActionPerformed
@@ -183,6 +189,13 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         // TODO add your handling code here:
         jTable1.setModel(dtmJuan);
     }//GEN-LAST:event_jRadioButtonJuanActionPerformed
+
+    private void jButtonAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlmacenActionPerformed
+        // TODO add your handling code here:
+        jDialogAlmacen = new JDialogAlmacen(this, true);
+        jDialogAlmacen.show();
+        
+    }//GEN-LAST:event_jButtonAlmacenActionPerformed
 
     /**
      * @param args the command line arguments

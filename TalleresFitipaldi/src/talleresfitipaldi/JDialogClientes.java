@@ -26,6 +26,7 @@ public class JDialogClientes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal) parent;
+        this.setTitle("Gestión de clientes");
       
         // INTRODUCIMOS EL NOMBRE DEL CLIENTE EN EL JCOMBOBOX
         for (Cliente cliente : padre.lista) {
