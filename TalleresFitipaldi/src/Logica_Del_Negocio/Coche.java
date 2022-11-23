@@ -12,11 +12,13 @@ public class Coche {
     private String Marca;
     private String Modelo;
     private String Matricula;
+    private String Mecanico;
 
-    public Coche(String Marca, String Modelo, String Matricula) {
+    public Coche(String Marca, String Modelo, String Matricula, String Mecanico) {
         this.Marca = Marca;
         this.Modelo = Modelo;
         this.Matricula = Matricula;
+        this.Mecanico = Mecanico;
     }
 
     public String getMarca() {
@@ -43,10 +45,21 @@ public class Coche {
         this.Matricula = Matricula;
     }
 
+    public String getMecanico() {
+        return Mecanico;
+    }
+
+    public void setMecanico(String Mecanico) {
+        this.Mecanico = Mecanico;
+    }
+
     @Override
     public String toString() {
-        return "Coche{" + "Marca=" + Marca + ", Modelo=" + Modelo + ", Matricula=" + Matricula + '}';
+        return "Coche{" + "Marca=" + Marca + ", Modelo=" + Modelo + ", Matricula=" + Matricula + ", Mecanico=" + Mecanico + '}';
     }
+    
+    
+    
     
      
 }

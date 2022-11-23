@@ -33,15 +33,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         lista = new ArrayList();
         listaCoche = new ArrayList();
         
-        Cliente c = new Cliente("Pepito", "Palotes", "18053624G", "654985655", "Opel", "Vivaro", "7965kij");
-        Cliente c1 = new Cliente("Pablo", "Pellote", "18049865H", "654552655", "Renaul", "Primastar", "2640fyr");
-        Cliente c2 = new Cliente("Julieta", "Labordeta", "18046857P", "654562435", "Fiat", "Panda", "2568res");
+        Cliente c = new Cliente("Pepito", "Palotes", "18053624G", "654985655", "Opel", "Vivaro", "7965kij","Juan");
+        Cliente c1 = new Cliente("Pablo", "Pellote", "18049865H", "654552655", "Renaul", "Primastar", "2640fyr","Pepe");
+        Cliente c2 = new Cliente("Julieta", "Labordeta", "18046857P", "654562435", "Fiat", "Panda", "2568res","Juan");
         lista.add(c);
         lista.add(c1);
         lista.add(c2);
         
         for (Cliente cliente : lista) {
-            Coche coche = new Coche(cliente.getMarca(),cliente.getModelo(),cliente.getMatricula());
+            Coche coche = new Coche(cliente.getMarca(),cliente.getModelo(),cliente.getMatricula(),cliente.getMecanico());
             listaCoche.add(coche);
         }
          

@@ -17,8 +17,9 @@ public class Cliente {
     private String Marca;
     private String Modelo;
     private String Matricula;
+    private String Mecanico;
 
-    public Cliente(String nombre, String apellidos, String dni, String telefono, String Marca, String Modelo, String Matricula) {
+    public Cliente(String nombre, String apellidos, String dni, String telefono, String Marca, String Modelo, String Matricula, String Mecanico) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -26,6 +27,7 @@ public class Cliente {
         this.Marca = Marca;
         this.Modelo = Modelo;
         this.Matricula = Matricula;
+        this.Mecanico = Mecanico;
     }
 
     public String getNombre() {
@@ -84,14 +86,18 @@ public class Cliente {
         this.Matricula = Matricula;
     }
 
+    public String getMecanico() {
+        return Mecanico;
+    }
+
+    public void setMecanico(String Mecanico) {
+        this.Mecanico = Mecanico;
+    }
+
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", telefono=" + telefono + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Matricula=" + Matricula + '}';
+        return "Cliente{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", telefono=" + telefono + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Matricula=" + Matricula + ", Mecanico=" + Mecanico + '}';
     }
     
-    
-   
-   
-    
-    
+     
 }

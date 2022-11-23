@@ -79,6 +79,8 @@ public class JDialogClientes extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabelMecanico = new javax.swing.JLabel();
+        jTextFieldMecaninco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,6 +130,8 @@ public class JDialogClientes extends javax.swing.JDialog {
             }
         });
 
+        jLabelMecanico.setText("Mecanico");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,22 +153,29 @@ public class JDialogClientes extends javax.swing.JDialog {
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel2))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel3)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jTextFieldMarca)))))
-                                .addGap(47, 47, 47)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel7)
+                                                    .addComponent(jLabel2))
+                                                .addGap(12, 12, 12)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(10, 10, 10)
+                                                        .addComponent(jTextFieldMarca)))))
+                                        .addGap(47, 47, 47))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabelMecanico)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldMecaninco)
+                                        .addGap(43, 43, 43)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel4)
@@ -210,7 +221,9 @@ public class JDialogClientes extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabelMecanico)
+                    .addComponent(jTextFieldMecaninco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -245,7 +258,7 @@ public class JDialogClientes extends javax.swing.JDialog {
                 || jTextFieldMatricula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Cliente c = new Cliente(jTextFieldNombre.getText(), jTextFieldApellidos.getText(), jTextFieldDNI.getText(), jTextFieldTelefono.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldMatricula.getText());
+            Cliente c = new Cliente(jTextFieldNombre.getText(), jTextFieldApellidos.getText(), jTextFieldDNI.getText(), jTextFieldTelefono.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldMatricula.getText(),jTextFieldMecaninco.getText());
             padre.lista.add(c);
              JOptionPane.showMessageDialog(null, "Se ha dado de alta a "+jTextFieldNombre.getText(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
             jComboBoxlistaClientes.removeAllItems();
@@ -335,11 +348,13 @@ public class JDialogClientes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelMecanico;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldApellidos;
     private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JTextField jTextFieldMarca;
     private javax.swing.JTextField jTextFieldMatricula;
+    private javax.swing.JTextField jTextFieldMecaninco;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldTelefono;

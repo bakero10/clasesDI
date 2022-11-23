@@ -4,6 +4,9 @@
  */
 package talleresfitipaldi;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author DAM2Alu1
@@ -13,11 +16,30 @@ public class JDialogAlmacen extends javax.swing.JDialog {
     /**
      * Creates new form JDialogAlmacen
      */
-    public JDialogAlmacen(java.awt.Frame parent, boolean modal) {
+    JDialogReparaciones padre; 
+    
+    
+    
+    public JDialogAlmacen(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        padre =  (JDialogReparaciones) parent;
     }
-
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +95,7 @@ public class JDialogAlmacen extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogAlmacen dialog = new JDialogAlmacen(new javax.swing.JFrame(), true);
+                JDialogAlmacen dialog = new JDialogAlmacen(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

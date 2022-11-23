@@ -4,6 +4,7 @@
  */
 package talleresfitipaldi;
 
+import Logica_Del_Negocio.Coche;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +18,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
      */
     JFramePrincipal padre;
     JDialogAlmacen jDialogAlmacen;
+    
     DefaultTableModel dtmTodos;
     DefaultTableModel dtmJuan;
     DefaultTableModel dtmPepe;
@@ -28,15 +30,35 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         initComponents();
         padre = (JFramePrincipal)parent;
         this.setTitle("Programa de Gestión de Reparaciones");
-       //jDialogAlmacen = new JDialogAlmacen(this, true);
+        
+        
         //INTRODUCIMOS LAS CABECERAS DE LAS TABLAS//
         dtmTodos = new DefaultTableModel(cabecera,0); //METEMOS EN EL JFRAME LA TABLA INGRESOS CON....(EL STRING DE LA CABECERA Y CON 0 FILAS POR DEFECTO)
         dtmJuan = new DefaultTableModel(cabecera,0);
         dtmPepe = new DefaultTableModel(cabecera,0);
+       insertarDatos();
         //PONEMOS LA VENTANA QUE QUEREMOS MOSTRAR CUANDO ARRANQUEMOS EL PROGRAMA
         jTable1.setModel(dtmTodos);
         //PONEMOS EL RADIOBUTTON VER TODO POR DEFECTO
         jRadioButtonGeneral.setSelected(true);
+    }
+    
+     //METODO INSERTAR DATOS EN TABLAS
+    public void insertarDatos(){
+        for (Coche coche : padre.listaCoche) {
+            String datos []={coche.getMarca()+" - " + coche.getModelo()+" - " + coche.getMatricula(),coche.getMecanico()};
+            dtmTodos.addRow(datos);
+            if(coche.getMecanico().equals("Juan")){
+                String datos2 []={coche.getMarca()+" - " + coche.getModelo()+" - " + coche.getMatricula(),coche.getMecanico()};
+            dtmJuan.addRow(datos);
+            }
+            if(coche.getMecanico().equals("Pepe")){
+                String datos3 []={coche.getMarca()+" - " + coche.getModelo()+" - " + coche.getMatricula(),coche.getMecanico()};
+            dtmPepe.addRow(datos);
+            }
+        }
+        
+        
     }
 
     /**
@@ -80,12 +102,27 @@ public class JDialogReparaciones extends javax.swing.JDialog {
 
         buttonGroupReparaciones.add(jRadioButtonJuan);
         jRadioButtonJuan.setText("Juan");
+        jRadioButtonJuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJuanActionPerformed(evt);
+            }
+        });
 
         buttonGroupReparaciones.add(jRadioButtonGeneral);
         jRadioButtonGeneral.setText("General");
+        jRadioButtonGeneral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonGeneralActionPerformed(evt);
+            }
+        });
 
         buttonGroupReparaciones.add(jRadioButtonPepe);
         jRadioButtonPepe.setText("Pepe");
+        jRadioButtonPepe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPepeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,6 +168,21 @@ public class JDialogReparaciones extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButtonGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGeneralActionPerformed
+        // TODO add your handling code here:
+        jTable1.setModel(dtmTodos);
+    }//GEN-LAST:event_jRadioButtonGeneralActionPerformed
+
+    private void jRadioButtonPepeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPepeActionPerformed
+        // TODO add your handling code here:
+        jTable1.setModel(dtmPepe);
+    }//GEN-LAST:event_jRadioButtonPepeActionPerformed
+
+    private void jRadioButtonJuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJuanActionPerformed
+        // TODO add your handling code here:
+        jTable1.setModel(dtmJuan);
+    }//GEN-LAST:event_jRadioButtonJuanActionPerformed
 
     /**
      * @param args the command line arguments
