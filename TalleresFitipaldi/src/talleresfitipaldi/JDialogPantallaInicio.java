@@ -8,6 +8,7 @@ import Logica_Del_Negocio.Mecanico;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import sun.security.util.Password;
 
@@ -20,16 +21,20 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
     /**
      * Creates new form JDialogPantallaInicio
      */
+    ArrayList<Mecanico> lista = new ArrayList<Mecanico>(); 
     Mecanico mecanico;
+    JFramePrincipal padre;
+    
+    
     public JDialogPantallaInicio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        mecanico = new Mecanico ("Juan","juan");
-        mecanico = new Mecanico ("Pepe","pepe");
+        padre = (JFramePrincipal) parent;
+        
         jLabelPanelAcceso.setForeground(Color.WHITE);
         jLabelContraseña.setForeground(Color.WHITE);
         jLabelUsuario.setForeground(Color.WHITE);
-        
+        lista = padre.listaMecanicos;
     }
 
     /**
@@ -94,22 +99,24 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAccesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAccesoMouseClicked
         // TODO add your handling code here:
-       Mecanico dm = new Mecanico("Admin","Bakero");
-      
-        
-        String Pass = new String(jPasswordField1.getPassword());
-        if(jTextFieldUsuario.getText().equals(dm.getUsuario()) && Pass.equals(dm.getContraseña())){
-            JFramePrincipal jfp = new JFramePrincipal();
-            jfp.setVisible(true);
+        boolean encontrado = false;
+        for (Mecanico mecanico1 : lista) {
+            if(jTextFieldUsuario.getText().equals(mecanico1.getUsuario()) && jPasswordField1.getText().equals(mecanico1.getContraseña())){
+                encontrado = true;
+            }
+        }
+        if(encontrado){
+            padre.setVisible(true);
+            padre.aplicacionIniciada=true;
             this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(rootPane, "Usuario o Contraseña Incorrectos","Error",JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            padre.dispose();
         }
     }//GEN-LAST:event_jButtonAccesoMouseClicked
 
@@ -124,44 +131,6 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
 }
     
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogPantallaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogPantallaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogPantallaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogPantallaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogPantallaInicio dialog = new JDialogPantallaInicio(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcceso;

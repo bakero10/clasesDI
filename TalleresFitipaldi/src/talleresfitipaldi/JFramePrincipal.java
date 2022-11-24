@@ -8,6 +8,7 @@ package talleresfitipaldi;
 import Logica_Del_Negocio.ArrayCliente;
 import Logica_Del_Negocio.Cliente;
 import Logica_Del_Negocio.Coche;
+import Logica_Del_Negocio.Mecanico;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -22,16 +23,32 @@ public class JFramePrincipal extends javax.swing.JFrame {
     /** Creates new form JFramePrincipal */
      JDialogClientes jdialogclientes;
      JDialogVehiculos jDialogVehiculos;
-      JDialogReparaciones jdialogReparaciones;
+     JDialogReparaciones jdialogReparaciones;
+     
+     ArrayList<Mecanico> listaMecanicos = new ArrayList<>();
      ArrayList<Cliente> lista;
      ArrayList<Coche> listaCoche;
+     ArrayList<String> listaPiezas;
+     boolean aplicacionIniciada = false;
      
-     public ArrayList<Cliente> ArrayPapa = new ArrayCliente().getLista();
+    public ArrayList<Cliente> ArrayPapa = new ArrayCliente().getLista();
     public JFramePrincipal() {
         initComponents();
+        
+        Mecanico mecanico2 = new Mecanico ("Juan","juan");
+        Mecanico mecanico3 = new Mecanico ("Pepe","pepe");
+        Mecanico mecanico4 = new Mecanico("Admin","Bakero");
+        
+        listaMecanicos.add(mecanico2);
+        listaMecanicos.add(mecanico3);
+        listaMecanicos.add(mecanico4);
+        
+        
+        
         this.setTitle("Talleres Fitipaldi");
         lista = new ArrayList();
         listaCoche = new ArrayList();
+        listaPiezas = new ArrayList<>();
         
         Cliente c = new Cliente("Pepito", "Palotes", "18053624G", "654985655", "Opel", "Vivaro", "7965kij","Juan");
         Cliente c1 = new Cliente("Pablo", "Pellote", "18049865H", "654552655", "Renaul", "Primastar", "2640fyr","Pepe");
@@ -40,11 +57,23 @@ public class JFramePrincipal extends javax.swing.JFrame {
         lista.add(c1);
         lista.add(c2);
         
+        //RELLENAMOS LISTA PARA COMBOBOX ALMACEN
+        
+        String [] piezas = {"Retrovisor","Luna","turbo","rueda","filtro","Tubo de escape","Limpiaparabrisas","Intermitentes","Frenos","Parachoques"};
+        for (String pieza : piezas) {
+            listaPiezas.add(pieza);
+        }
+        
+        
         for (Cliente cliente : lista) {
             Coche coche = new Coche(cliente.getMarca(),cliente.getModelo(),cliente.getMatricula(),cliente.getMecanico());
             listaCoche.add(coche);
         }
-         
+         if(!aplicacionIniciada){
+            this.dispose();
+            JDialogPantallaInicio jDialogPantallaInicio = new JDialogPantallaInicio(this, true);
+            jDialogPantallaInicio.setVisible(true);
+        }
     }
     
     /** This method is called from within the constructor to

@@ -29,7 +29,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         padre = (JFramePrincipal)parent;
-        this.setTitle("Programa de Gestión de Reparaciones");
+        this.setTitle("Gestión de Reparaciones");
         
         
         //INTRODUCIMOS LAS CABECERAS DE LAS TABLAS//
