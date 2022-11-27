@@ -20,7 +20,7 @@ public class JDialogClientes extends javax.swing.JDialog {
      * Creates new form JDialogClientes
      */
     JFramePrincipal padre;
-  
+     JDialogVehiculos jDialogVehiculos;
 
     public JDialogClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -56,7 +56,14 @@ public class JDialogClientes extends javax.swing.JDialog {
         jTextFieldModelo.setText("");
         jTextFieldMatricula.setText("");
         jTextFieldMarca.setText("");
+        jTextFieldMecaninco.setText("");
+                
     }
+     public void annadirCombobox(){
+         for (Cliente cliente : padre.lista) {
+                jComboBoxlistaClientes.addItem(cliente.getNombre());
+            }
+     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,6 +77,7 @@ public class JDialogClientes extends javax.swing.JDialog {
         jTextFieldModelo = new javax.swing.JTextField();
         jTextFieldApellidos = new javax.swing.JTextField();
         jTextFieldDNI = new javax.swing.JTextField();
+        jTextFieldMecaninco = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -80,10 +88,11 @@ public class JDialogClientes extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButtonBorrar = new javax.swing.JButton();
         jLabelMecanico = new javax.swing.JLabel();
-        jTextFieldMecaninco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jComboBoxlistaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,7 +126,7 @@ public class JDialogClientes extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Eliminar");
+        jButton2.setText("Eliminar Cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -128,6 +137,13 @@ public class JDialogClientes extends javax.swing.JDialog {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButtonBorrar.setText("Borrar Datos");
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
             }
         });
 
@@ -142,57 +158,50 @@ public class JDialogClientes extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jComboBoxlistaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 91, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel7)
-                                                    .addComponent(jLabel2))
-                                                .addGap(12, 12, 12)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(jTextFieldMarca)))))
-                                        .addGap(47, 47, 47))
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel2))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldMarca)
+                                            .addComponent(jTextFieldNombre)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabelMecanico)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldMecaninco)
-                                        .addGap(43, 43, 43)))
+                                        .addComponent(jTextFieldTelefono))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabelMecanico, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldMecaninco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel6))))
+                                    .addComponent(jLabel6)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldMatricula)
-                                    .addComponent(jTextFieldModelo)
-                                    .addComponent(jTextFieldApellidos)
-                                    .addComponent(jTextFieldDNI)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldMatricula)
+                                .addComponent(jTextFieldModelo)
+                                .addComponent(jTextFieldApellidos)
+                                .addComponent(jTextFieldDNI))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
                                 .addGap(29, 29, 29)))))
                 .addGap(18, 18, 18))
         );
@@ -220,12 +229,18 @@ public class JDialogClientes extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabelMecanico)
-                    .addComponent(jTextFieldMecaninco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelMecanico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMecaninco, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jButtonBorrar)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -237,35 +252,35 @@ public class JDialogClientes extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // BOTON ALTA
-        if (jTextFieldNombre.getText().isEmpty() || jTextFieldApellidos.getText().isEmpty()
-                || jTextFieldTelefono.getText().isEmpty() || jTextFieldDNI.getText().isEmpty()
-                || jTextFieldMatricula.getText().isEmpty() || jTextFieldModelo.getText().isEmpty()
-                || jTextFieldMatricula.getText().isEmpty()) {
+        if (jTextFieldNombre.getText().isEmpty() || jTextFieldApellidos.getText().isEmpty() || jTextFieldTelefono.getText().isEmpty() || jTextFieldDNI.getText().isEmpty() || jTextFieldMatricula.getText().isEmpty() || jTextFieldModelo.getText().isEmpty() || jTextFieldMatricula.getText().isEmpty() || jTextFieldMecaninco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debes rellenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }
+        else {
             Cliente c = new Cliente(jTextFieldNombre.getText(), jTextFieldApellidos.getText(), jTextFieldDNI.getText(), jTextFieldTelefono.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldMatricula.getText(),jTextFieldMecaninco.getText());
+            Coche co = new Coche(jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldMatricula.getText(),jTextFieldMecaninco.getText());
             padre.lista.add(c);
+            padre.listaCoche.add(co);
+            
              JOptionPane.showMessageDialog(null, "Se ha dado de alta a "+jTextFieldNombre.getText(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
             jComboBoxlistaClientes.removeAllItems();
-            for (Cliente cliente : padre.lista) {
-                jComboBoxlistaClientes.addItem(cliente.getNombre());
-            }
+            annadirCombobox();
+            jDialogVehiculos.actualizarTablaCoche();
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -280,13 +295,13 @@ public class JDialogClientes extends javax.swing.JDialog {
                 jTextFieldModelo.setText(cliente.getModelo());
                 jTextFieldMatricula.setText(cliente.getMatricula());
                 jTextFieldMarca.setText(cliente.getMarca());
+                jTextFieldMecaninco.setText(cliente.getMecanico());
             }
         }
     }//GEN-LAST:event_jComboBoxlistaClientesActionPerformed
 
     private void jComboBoxlistaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxlistaClientesMouseClicked
         // TODO add your handling code here:
-        // System.out.println(evt
 
     }//GEN-LAST:event_jComboBoxlistaClientesMouseClicked
 
@@ -305,6 +320,7 @@ public class JDialogClientes extends javax.swing.JDialog {
                     cliente.setDni(jTextFieldDNI.getText());
                     cliente.setMarca(jTextFieldMarca.getText());
                     cliente.setModelo(jTextFieldModelo.getText());
+                     cliente.setMecanico(jTextFieldMecaninco.getText());
                     rellenarCombo();
                     if (contador == 0) {
                         JOptionPane.showMessageDialog(null, "Este cliente no existe debes darlo de alta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -333,6 +349,11 @@ public class JDialogClientes extends javax.swing.JDialog {
         rellenarCombo();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        // BOTON BORRAR
+        ponerCamposVacios();
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,6 +362,7 @@ public class JDialogClientes extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonBorrar;
     private javax.swing.JComboBox<String> jComboBoxlistaClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -72,8 +72,6 @@ public class JDialogReparaciones extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroupReparaciones = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldEstado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonAlmacen = new javax.swing.JButton();
@@ -82,8 +80,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         jRadioButtonPepe = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Estado");
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,20 +136,17 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
+                .addComponent(jRadioButtonJuan)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButtonJuan)
                         .addGap(65, 65, 65)
-                        .addComponent(jRadioButtonPepe))
+                        .addComponent(jRadioButtonPepe)
+                        .addGap(68, 68, 68)
+                        .addComponent(jRadioButtonGeneral))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonGeneral)
-                    .addComponent(jButtonAlmacen))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jButtonAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,10 +158,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                     .addComponent(jRadioButtonGeneral)
                     .addComponent(jRadioButtonPepe))
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAlmacen))
+                .addComponent(jButtonAlmacen)
                 .addGap(0, 73, Short.MAX_VALUE))
         );
 
@@ -206,12 +197,10 @@ public class JDialogReparaciones extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroupReparaciones;
     private javax.swing.JButton jButtonAlmacen;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButtonGeneral;
     private javax.swing.JRadioButton jRadioButtonJuan;
     private javax.swing.JRadioButton jRadioButtonPepe;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldEstado;
     // End of variables declaration//GEN-END:variables
 }

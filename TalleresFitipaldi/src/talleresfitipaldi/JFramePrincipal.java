@@ -9,10 +9,17 @@ import Logica_Del_Negocio.ArrayCliente;
 import Logica_Del_Negocio.Cliente;
 import Logica_Del_Negocio.Coche;
 import Logica_Del_Negocio.Mecanico;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
@@ -34,6 +41,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     public ArrayList<Cliente> ArrayPapa = new ArrayCliente().getLista();
     public JFramePrincipal() {
         initComponents();
+        
+         ImageIcon fot = new ImageIcon("src/Imagen/mecanicadia.jpg");
+         Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
+         jLabel1.setIcon(icono);
+         this.repaint();
         
         Mecanico mecanico2 = new Mecanico ("Juan","juan");
         Mecanico mecanico3 = new Mecanico ("Pepe","pepe");
@@ -99,7 +111,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonNocturno.setText("Nocturno");
-        jPanel1.add(jButtonNocturno, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 160, 50));
+        jButtonNocturno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNocturnoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonNocturno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 130, 50));
 
         jButtonClientes.setText("Clientes");
         jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +124,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 jButtonClientesActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 130, 50));
+        jPanel1.add(jButtonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 50));
 
         jButtonReparaciones.setText("Reparaciones");
         jButtonReparaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +132,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 jButtonReparacionesActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonReparaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, 50));
+        jPanel1.add(jButtonReparaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 130, 50));
 
         jButtonVehiculos.setText("Vehiculos");
         jButtonVehiculos.addActionListener(new java.awt.event.ActionListener() {
@@ -123,11 +140,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 jButtonVehiculosActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 130, 50));
+        jPanel1.add(jButtonVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 130, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/67233-mecanica.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/mecanicadia.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(600, 400));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 620, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,7 +166,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
-        // TODO add your handling code here:
+        // BOTON CLIENTE
         
         jdialogclientes = new JDialogClientes(this, true);
         jdialogclientes.show();
@@ -157,7 +174,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClientesActionPerformed
 
     private void jButtonVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVehiculosActionPerformed
-        // TODO add your handling code here:
+        // BOTON VEHICULO
         jDialogVehiculos = new JDialogVehiculos(this, true);
         jDialogVehiculos.show();
         
@@ -165,10 +182,56 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVehiculosActionPerformed
 
     private void jButtonReparacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReparacionesActionPerformed
-        // TODO add your handling code here:
+        // BOTON REPARACIONES
         jdialogReparaciones = new JDialogReparaciones(this, true);
         jdialogReparaciones.show();
     }//GEN-LAST:event_jButtonReparacionesActionPerformed
+
+    private void jButtonNocturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNocturnoActionPerformed
+        // BOTON NOCTURNO
+        if(jButtonNocturno.getText().equals("Nocturno")){
+           
+            
+            ImageIcon fot = new ImageIcon("src/Imagen/mecanicanoche.jpg");
+            Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
+            jLabel1.setIcon(icono);
+            this.repaint();
+            
+            jButtonNocturno.setText("Diurno");
+            jButtonNocturno.setBackground(Color.BLACK);
+            jButtonNocturno.setForeground(Color.WHITE);
+            
+              jButtonClientes.setBackground(Color.BLACK);
+            jButtonClientes.setForeground(Color.WHITE);
+            
+              jButtonReparaciones.setBackground(Color.BLACK);
+            jButtonReparaciones.setForeground(Color.WHITE);
+            
+              jButtonVehiculos.setBackground(Color.BLACK);
+            jButtonVehiculos.setForeground(Color.WHITE);
+        }
+        else  {
+           
+             
+            ImageIcon fot = new ImageIcon("src/Imagen/mecanicadia.jpg");
+            Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
+            jLabel1.setIcon(icono);
+            this.repaint();
+             
+            jButtonNocturno.setText("Nocturno");
+             jButtonNocturno.setBackground(Color.WHITE);
+            jButtonNocturno.setForeground(Color.BLACK);
+            
+              jButtonClientes.setBackground(Color.WHITE);
+            jButtonClientes.setForeground(Color.BLACK);
+            
+              jButtonReparaciones.setBackground(Color.WHITE);
+            jButtonReparaciones.setForeground(Color.BLACK);
+            
+              jButtonVehiculos.setBackground(Color.WHITE);
+            jButtonVehiculos.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jButtonNocturnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,7 +265,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFramePrincipal().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(new MetalLookAndFeel());
+                    new JFramePrincipal().setVisible(true);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

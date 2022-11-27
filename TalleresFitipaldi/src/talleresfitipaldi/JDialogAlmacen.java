@@ -5,6 +5,7 @@
 package talleresfitipaldi;
 
 import Logica_Del_Negocio.Coche;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
@@ -19,19 +20,25 @@ public class JDialogAlmacen extends javax.swing.JDialog {
     /**
      * Creates new form JDialogAlmacen
      */
-    int contador = 0;
+    int contador;
     JDialogReparaciones padre; 
      DefaultListModel<String> modelo=new DefaultListModel<>();
+     DefaultListModel<String> modelo2=new DefaultListModel<>();
+     ArrayList<String> piezas = new ArrayList<>();
+     
     public JDialogAlmacen(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setTitle("Almacen");
         padre =  (JDialogReparaciones) parent;
-        jListLista.setModel(modelo);
+        jListLista3.setModel(modelo);
+        jList2.setModel(modelo2);
+        
         String [] piezas = {"Retrovisor","Luna","turbo","rueda","filtro","Tubo de escape","Limpiaparabrisas","Intermitentes","Frenos","Parachoques"};
         for (String pieza : piezas) {
             modelo.addElement(pieza);
         }
+        
         
         
     }
@@ -48,21 +55,16 @@ public class JDialogAlmacen extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelCoger = new javax.swing.JLabel();
-        jLabelDejar = new javax.swing.JLabel();
-        jLabelCogerabajo = new javax.swing.JLabel();
         jButtonCoger = new javax.swing.JButton();
-        jButtonAlmacenar = new javax.swing.JButton();
+        jLabelMostrar = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListLista3 = new javax.swing.JList<>();
+        jButtonGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListLista = new javax.swing.JList<>();
+        jList2 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabelCoger.setText("Coger");
-
-        jLabelDejar.setText("Almacenar");
-
-        jLabelCogerabajo.setText("jLabel1");
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jButtonCoger.setText("+");
         jButtonCoger.addActionListener(new java.awt.event.ActionListener() {
@@ -71,120 +73,118 @@ public class JDialogAlmacen extends javax.swing.JDialog {
             }
         });
 
-        jButtonAlmacenar.setText("+");
-        jButtonAlmacenar.addActionListener(new java.awt.event.ActionListener() {
+        jListLista3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListLista3MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jListLista3);
+
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlmacenarActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
-        jListLista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListListaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jListLista);
+        jScrollPane1.setViewportView(jList2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelCogerabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabelCoger))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonCoger, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelDejar)
-                                .addGap(95, 95, 95))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonAlmacenar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButtonCoger, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(125, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCoger)
-                    .addComponent(jLabelDejar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCoger)
-                    .addComponent(jButtonAlmacenar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelCogerabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jButtonGuardar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(212, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jListListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListListaMouseClicked
+    private void jListLista3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLista3MouseClicked
         // TODO add your handling code here:
-       if(evt.getClickCount() == 2){
-           jLabelCogerabajo.setText(jListLista.getSelectedValue());
-       }
-        
-    }//GEN-LAST:event_jListListaMouseClicked
+    }//GEN-LAST:event_jListLista3MouseClicked
 
     private void jButtonCogerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCogerActionPerformed
-        // TODO add your handling code here:
-        
+        // BOTON +
         contador++;
-        jLabelCoger.setText(jListLista.getSelectedValue()+" - "+contador);
+        jLabelMostrar.setText(jListLista3.getSelectedValue()+"  +  "+contador);
+
     }//GEN-LAST:event_jButtonCogerActionPerformed
 
-    private void jButtonAlmacenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlmacenarActionPerformed
-        // TODO add your handling code here:
-        
-        contador++;
-        jLabelCoger.setText(jListLista.getSelectedValue()+" - "+contador);
-    }//GEN-LAST:event_jButtonAlmacenarActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // BOTON GUARDAR
+      
+       String trozo =jLabelMostrar.getText();
+        piezas.add(trozo);
+          jLabelMostrar.setText("");
+          contador = 0;
+          modelo2.removeAllElements();
+        for (String pieza : piezas) {
+           modelo2.addElement(pieza);
+        }
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlmacenar;
     private javax.swing.JButton jButtonCoger;
-    private javax.swing.JLabel jLabelCoger;
-    private javax.swing.JLabel jLabelCogerabajo;
-    private javax.swing.JLabel jLabelDejar;
-    private javax.swing.JList<String> jListLista;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JLabel jLabelMostrar;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jListLista3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }

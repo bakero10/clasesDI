@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sun.security.util.Password;
 
@@ -29,7 +31,14 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
     public JDialogPantallaInicio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("Inicio Sesión");
         padre = (JFramePrincipal) parent;
+        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+        
+            ImageIcon fot = new ImageIcon("src/Imagen/mecanicadia.jpg");
+            Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
+            jLabel1.setIcon(icono);
+            this.repaint();
         
         jLabelPanelAcceso.setForeground(Color.WHITE);
         jLabelContraseña.setForeground(Color.WHITE);
@@ -58,10 +67,11 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
         setIconImages(getIconImages());
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 170, 30));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 170, 30));
+        jPanel1.add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, 30));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 170, 30));
 
         jButtonAcceso.setText("Acceso");
         jButtonAcceso.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,22 +79,22 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
                 jButtonAccesoMouseClicked(evt);
             }
         });
-        jPanel1.add(jButtonAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 150, -1));
+        jPanel1.add(jButtonAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 150, -1));
 
         jLabelUsuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelUsuario.setText("Usuario");
-        jPanel1.add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 110, 20));
+        jPanel1.add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 110, 20));
 
         jLabelContraseña.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelContraseña.setText("Contraseña");
         jLabelContraseña.setPreferredSize(new java.awt.Dimension(600, 400));
-        jPanel1.add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 130, 30));
+        jPanel1.add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, 30));
 
         jLabelPanelAcceso.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelPanelAcceso.setText("Panel de Acceso");
-        jPanel1.add(jLabelPanelAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        jPanel1.add(jLabelPanelAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/67233-mecanica.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/mecanicadia.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,18 +116,20 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         // TODO add your handling code here:
         boolean encontrado = false;
         for (Mecanico mecanico1 : lista) {
-            if(jTextFieldUsuario.getText().equals(mecanico1.getUsuario()) && jPasswordField1.getText().equals(mecanico1.getContraseña())){
-                encontrado = true;
-            }
-        }
-        if(encontrado){
-            padre.setVisible(true);
-            padre.aplicacionIniciada=true;
-            this.dispose();
-        }
-        else{
-            padre.dispose();
-        }
+                    if(jTextFieldUsuario.getText().equals(mecanico1.getUsuario()) && jPasswordField1.getText().equals(mecanico1.getContraseña())){
+                        encontrado = true;
+                        padre.setVisible(true);
+                        padre.aplicacionIniciada=true;
+                        this.dispose();    
+                    }
+                }
+                if(!encontrado){
+                     JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrecto","Error de inicio de sesion",JOptionPane.INFORMATION_MESSAGE);
+                     System.exit(-1);
+                }
+             
+                  
+                       
     }//GEN-LAST:event_jButtonAccesoMouseClicked
 
     /**

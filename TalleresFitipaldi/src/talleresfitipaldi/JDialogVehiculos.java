@@ -7,6 +7,7 @@ package talleresfitipaldi;
 import Logica_Del_Negocio.Cliente;
 import Logica_Del_Negocio.Coche;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,13 +33,18 @@ public class JDialogVehiculos extends javax.swing.JDialog {
                     public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
                     };
         jTable1.setModel(dtm);
-        for (Coche coche : padre.listaCoche) {
-            String coches [] = {coche.getMarca(),coche.getModelo(),coche.getMatricula(),coche.getMecanico()};
-            dtm.addRow(coches);
-        }
+        actualizarTablaCoche();
+       
+        
         
         
     }
+     public void actualizarTablaCoche(){
+         for (Coche coche : padre.listaCoche) {
+            String coches [] = {coche.getMarca(),coche.getModelo(),coche.getMatricula(),coche.getMecanico()};
+            dtm.addRow(coches);
+        }
+        }
  
            
       
@@ -67,6 +73,7 @@ public class JDialogVehiculos extends javax.swing.JDialog {
         jTextFieldMecanico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,10 +200,16 @@ public class JDialogVehiculos extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // BOTON AÑADIR
-        Coche coche = new Coche (jTextFieldMarca.getText(),jTextFieldModelo.getText(),jTextFieldMatricula.getText(),jTextFieldMecanico.getText());
-        String [] añadir = {jTextFieldMarca.getText(),jTextFieldModelo.getText(),jTextFieldMatricula.getText(),jTextFieldMecanico.getText()};
-        padre.listaCoche.add(coche);
-        dtm.addRow(añadir);
+        if(jTextFieldMecanico.getText().equals("Juan") || jTextFieldMecanico.getText().endsWith("Pepe")){
+            Coche coche = new Coche (jTextFieldMarca.getText(),jTextFieldModelo.getText(),jTextFieldMatricula.getText(),jTextFieldMecanico.getText());
+            String [] añadir = {jTextFieldMarca.getText(),jTextFieldModelo.getText(),jTextFieldMatricula.getText(),jTextFieldMecanico.getText()};
+            padre.listaCoche.add(coche);
+            dtm.addRow(añadir);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Debes introducir un mecanico valido","Error de verificación",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
