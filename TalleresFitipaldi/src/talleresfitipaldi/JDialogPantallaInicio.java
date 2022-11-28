@@ -33,12 +33,13 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Inicio Sesión");
         padre = (JFramePrincipal) parent;
-        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+        
         
             ImageIcon fot = new ImageIcon("src/Imagen/mecanicadia.jpg");
             Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
             jLabel1.setIcon(icono);
             this.repaint();
+            
         
         jLabelPanelAcceso.setForeground(Color.WHITE);
         jLabelContraseña.setForeground(Color.WHITE);
@@ -65,8 +66,7 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
-        setIconImages(getIconImages());
+        setIconImage(null);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,6 +77,11 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
         jButtonAcceso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAccesoMouseClicked(evt);
+            }
+        });
+        jButtonAcceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAccesoActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 150, -1));
@@ -113,36 +118,25 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAccesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAccesoMouseClicked
-        // TODO add your handling code here:
-        boolean encontrado = false;
+               
+    }//GEN-LAST:event_jButtonAccesoMouseClicked
+
+    private void jButtonAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAccesoActionPerformed
+         boolean encontrado = false;
         for (Mecanico mecanico1 : lista) {
                     if(jTextFieldUsuario.getText().equals(mecanico1.getUsuario()) && jPasswordField1.getText().equals(mecanico1.getContraseña())){
-                        encontrado = true;
-                        padre.setVisible(true);
-                        padre.aplicacionIniciada=true;
-                        this.dispose();    
+                        encontrado = true; 
                     }
                 }
                 if(!encontrado){
                      JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrecto","Error de inicio de sesion",JOptionPane.INFORMATION_MESSAGE);
                      System.exit(-1);
+                } else {
+                        padre.setVisible(true);
+                        padre.aplicacionIniciada=true;
+                        this.dispose();   
                 }
-             
-                  
-                       
-    }//GEN-LAST:event_jButtonAccesoMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    
-     public Image getIconImage() {
-   Image retValue = Toolkit.getDefaultToolkit().
-         getImage(ClassLoader.getSystemResource("Imagen/mecanico.png"));
-   return retValue;
-}
-    
-    
+    }//GEN-LAST:event_jButtonAccesoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcceso;

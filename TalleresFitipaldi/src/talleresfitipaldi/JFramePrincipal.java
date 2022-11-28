@@ -55,7 +55,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         listaMecanicos.add(mecanico3);
         listaMecanicos.add(mecanico4);
         
-        
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/Imagen/mecanico.png"));
         
         this.setTitle("Talleres Fitipaldi");
         lista = new ArrayList();
@@ -232,34 +232,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             jButtonVehiculos.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jButtonNocturnoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public Image getIconImage() {
-   Image retValue = Toolkit.getDefaultToolkit().
-         getImage(ClassLoader.getSystemResource("Imagen/mecanico.png"));
-   return retValue;
-}
-    
-    
+     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       
         //</editor-fold>
 
         /* Create and display the form */
@@ -267,7 +247,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(new MetalLookAndFeel());
-                    new JFramePrincipal().setVisible(true);
+                    new JFramePrincipal();
                 } catch (UnsupportedLookAndFeelException ex) {
                     Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
