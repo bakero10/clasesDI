@@ -4,6 +4,12 @@
  */
 package testeo;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DAM2Alu1
@@ -15,6 +21,21 @@ public class JFrameCompoText extends javax.swing.JFrame {
      */
     public JFrameCompoText() {
         initComponents();
+        File fichero = new File("./help/help_set.hs");
+        URL hsURL;
+        HelpSet helpset;
+        try {
+            hsURL = fichero.toURI().toURL();
+            helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.enableHelpOnButton(jMenuItemAyuda, "aplicacion", helpset);
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+        } catch (HelpSetException ex) {
+            Logger.getLogger(FramePrueba.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(FramePrueba.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -29,6 +50,10 @@ public class JFrameCompoText extends javax.swing.JFrame {
         compoTextPrueba = new compotext.CompoText();
         jLabelCompoText = new javax.swing.JLabel();
         compoTextAmpliado1 = new compotext.CompoTextAmpliado();
+        jButtonAyudaPrincipal = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,6 +64,16 @@ public class JFrameCompoText extends javax.swing.JFrame {
 
         compoTextAmpliado1.setText("compoTextAmpliado1");
         compoTextAmpliado1.setColores(new compotext.ClaseDosColores(new java.awt.Color(-240),new java.awt.Color(-65536)));
+
+        jButtonAyudaPrincipal.setText("Ayuda Principal");
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenuAyuda.setText("Ayuda");
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,6 +89,10 @@ public class JFrameCompoText extends javax.swing.JFrame {
                 .addGap(107, 107, 107)
                 .addComponent(compoTextAmpliado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAyudaPrincipal)
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,7 +103,9 @@ public class JFrameCompoText extends javax.swing.JFrame {
                     .addComponent(jLabelCompoText))
                 .addGap(60, 60, 60)
                 .addComponent(compoTextAmpliado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAyudaPrincipal)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,6 +149,10 @@ public class JFrameCompoText extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private compotext.CompoTextAmpliado compoTextAmpliado1;
     private compotext.CompoText compoTextPrueba;
+    private javax.swing.JButton jButtonAyudaPrincipal;
     private javax.swing.JLabel jLabelCompoText;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
