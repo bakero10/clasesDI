@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="paises" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8ba76a68-b6f1-441c-9384-866cf8c313c1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     country.`Code` AS country_Code,
+     country.`Name` AS country_Name,
+     country.`Continent` AS country_Continent,
+     country.`Population` AS country_Population,
+     country.`Capital` AS country_Capital
+FROM
+     `country` country]]>
+	</queryString>
+	<field name="country_Code" class="java.lang.String"/>
+	<field name="country_Name" class="java.lang.String"/>
+	<field name="country_Continent" class="java.lang.String"/>
+	<field name="country_Population" class="java.lang.Integer"/>
+	<field name="country_Capital" class="java.lang.Integer"/>
+	<variable name="country_Code_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{country_Code}]]></variableExpression>
+	</variable>
+	<variable name="country_Population_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{country_Population}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="42" backcolor="#6699FF" uuid="7368d8c7-daf7-4578-b441-d373c887fc0e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="24"/>
+				</textElement>
+				<text><![CDATA[Hola paises desde DAM2]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="444" y="3" width="111" height="35" uuid="e9cab4e0-23f7-480a-93e3-f0b70db2528a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="3" width="103" height="35" uuid="de73de3b-a273-475f-83a1-2573714d9936"/>
+				<text><![CDATA[FECHA IMPRESIÓN]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="b8d748f8-a437-4d48-9dff-5dfc39f27c5e"/>
+				<text><![CDATA[ABREVIACION	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="20" uuid="0cc72620-87c7-4fb1-9e1d-7fa1aaf4878f"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="20" uuid="1d1b7795-fa43-4d1a-be11-2800a93fc8fe"/>
+				<text><![CDATA[CONTINENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20" uuid="fad67a25-c213-4b6c-a344-7ebafefc5f8b"/>
+				<text><![CDATA[CAPITAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="72cc6883-ab38-480f-ba27-a872726819ef"/>
+				<text><![CDATA[POBLACIÓN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="4720758a-ec14-483a-9b65-c0f647ccd242"/>
+				<textFieldExpression><![CDATA[$F{country_Code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="5c34454f-f92e-4a37-9a0b-860b9e947b1e"/>
+				<textFieldExpression><![CDATA[$F{country_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="5ae69f0d-4cfe-427c-ba19-003b0b923a9a"/>
+				<textFieldExpression><![CDATA[$F{country_Continent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="c78edc3d-7841-4cbb-8081-845653a887a3"/>
+				<textFieldExpression><![CDATA[$F{country_Population}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="5bd77cc1-a036-4b3f-99f2-8240681f8e8c"/>
+				<textFieldExpression><![CDATA[$F{country_Capital}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="27" width="156" height="27" uuid="b213b5a9-9dc0-43cf-a7c4-dc1bf5f50ff4"/>
+				<text><![CDATA[NUMERO DE REGISTROS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="27" width="111" height="27" uuid="e8246670-7039-4b87-9bfe-d59ffc5e8262"/>
+				<text><![CDATA[TOTAL POBLACIÓN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="156" y="27" width="100" height="20" uuid="794b98ba-bbe2-4078-8374-ab875470dfaf"/>
+				<textFieldExpression><![CDATA[$V{country_Code_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="27" width="51" height="20" uuid="bb17bbac-f8c9-4550-88d5-4bd7a8c16c80"/>
+				<textFieldExpression><![CDATA[$V{country_Population_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="34" width="80" height="20" uuid="fa0eca71-5e57-4ab4-9cdc-6a709ca1543e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de "+$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="498" y="34" width="40" height="20" uuid="575cb27f-e7a2-45de-ae6c-81a1aeacf705"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="14" width="555" height="1" uuid="cdcbbcf1-6c07-4b81-8190-26d0a60319d3"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50"/>
+	</summary>
+</jasperReport>

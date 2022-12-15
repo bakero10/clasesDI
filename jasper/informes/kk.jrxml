@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kk" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de07d185-0663-4c10-8be5-3b1e1eb2db46">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     city.`ID` AS city_ID,
+     city.`Name` AS city_Name,
+     city.`CountryCode` AS city_CountryCode,
+     city.`District` AS city_District,
+     city.`Population` AS city_Population,
+     country.`Code` AS country_Code,
+     country.`Name` AS country_Name,
+     country.`Continent` AS country_Continent,
+     country.`Region` AS country_Region,
+     country.`SurfaceArea` AS country_SurfaceArea,
+     country.`IndepYear` AS country_IndepYear,
+     country.`Population` AS country_Population,
+     country.`LifeExpectancy` AS country_LifeExpectancy,
+     country.`GNP` AS country_GNP,
+     country.`GNPOld` AS country_GNPOld,
+     country.`LocalName` AS country_LocalName,
+     country.`GovernmentForm` AS country_GovernmentForm,
+     country.`HeadOfState` AS country_HeadOfState,
+     country.`Capital` AS country_Capital,
+     country.`Code2` AS country_Code2
+FROM
+     `country` country INNER JOIN `city` city ON country.`Code` = city.`CountryCode`]]>
+	</queryString>
+	<field name="city_ID" class="java.lang.Integer"/>
+	<field name="city_Name" class="java.lang.String"/>
+	<field name="city_CountryCode" class="java.lang.String"/>
+	<field name="city_District" class="java.lang.String"/>
+	<field name="city_Population" class="java.lang.Integer"/>
+	<field name="country_Code" class="java.lang.String"/>
+	<field name="country_Name" class="java.lang.String"/>
+	<field name="country_Continent" class="java.lang.String"/>
+	<field name="country_Region" class="java.lang.String"/>
+	<field name="country_SurfaceArea" class="java.math.BigDecimal"/>
+	<field name="country_IndepYear" class="java.lang.Integer"/>
+	<field name="country_Population" class="java.lang.Integer"/>
+	<field name="country_LifeExpectancy" class="java.math.BigDecimal"/>
+	<field name="country_GNP" class="java.math.BigDecimal"/>
+	<field name="country_GNPOld" class="java.math.BigDecimal"/>
+	<field name="country_LocalName" class="java.lang.String"/>
+	<field name="country_GovernmentForm" class="java.lang.String"/>
+	<field name="country_HeadOfState" class="java.lang.String"/>
+	<field name="country_Capital" class="java.lang.Integer"/>
+	<field name="country_Code2" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="8fb74855-380b-4a36-8747-4dc313ebe5af"/>
+				<text><![CDATA[country_Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="5b8fede1-2137-4f05-93a4-c76d75e8561d"/>
+				<text><![CDATA[country_Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="bb179bca-37af-4c1b-80b5-1edf3d6c8c2f"/>
+				<text><![CDATA[country_Population]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="13f217df-4369-4dc4-9bbf-560ea21696bc"/>
+				<text><![CDATA[country_Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="111" height="20" uuid="ddfacbac-2130-4cf8-98f7-50695d50bf8d"/>
+				<text><![CDATA[city_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="40" width="111" height="20" uuid="b3cc5909-fe1f-4e4a-b34d-3ab5dde90cb7"/>
+				<text><![CDATA[city_Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="40" width="111" height="20" uuid="f4e74765-3ef3-462c-b192-2886678e623c"/>
+				<text><![CDATA[city_CountryCode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="40" width="111" height="20" uuid="22a0c67a-6fd5-45ee-b5dc-8059125923c1"/>
+				<text><![CDATA[city_District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="40" width="111" height="20" uuid="4af276e4-cbc9-4b79-b415-ed63d9ad522c"/>
+				<text><![CDATA[city_Population]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-70" width="138" height="20" uuid="5192d4ff-65d6-4608-b8e1-6485f1cb3efa"/>
+				<textFieldExpression><![CDATA[$F{country_Code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="-70" width="138" height="20" uuid="b185a705-7f98-4975-9d65-3f5ebca7340b"/>
+				<textFieldExpression><![CDATA[$F{country_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="-70" width="138" height="20" uuid="b4ec5cb9-a2ff-4092-9497-8db1e9f474fa"/>
+				<textFieldExpression><![CDATA[$F{country_Population}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="-70" width="138" height="20" uuid="25031766-474c-44c2-b0e0-f6e00d39cf04"/>
+				<textFieldExpression><![CDATA[$F{country_Capital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="a6a47268-0425-414f-b38f-1374531be238"/>
+				<textFieldExpression><![CDATA[$F{city_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="20" uuid="671a1724-6293-4839-8e2d-7d5877772989"/>
+				<textFieldExpression><![CDATA[$F{city_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="20" uuid="507963e0-5a76-4aa7-a668-98ed2747d7a1"/>
+				<textFieldExpression><![CDATA[$F{city_CountryCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="20" uuid="f7d9716f-f774-4ebd-bedd-edb9ed324368"/>
+				<textFieldExpression><![CDATA[$F{city_District}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="17b4083a-d0bf-4b10-869d-f5cff2d58d90"/>
+				<textFieldExpression><![CDATA[$F{city_Population}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

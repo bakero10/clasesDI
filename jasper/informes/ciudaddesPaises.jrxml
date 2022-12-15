@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ciudaddesPaises" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="94a301f2-4797-4dda-9fb7-e9c9333138b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     city.`ID` AS city_ID,
+     city.`Name` AS city_Name,
+     city.`CountryCode` AS city_CountryCode,
+     city.`District` AS city_District,
+     city.`Population` AS city_Population,
+     country.`Code` AS country_Code,
+     country.`Name` AS country_Name,
+     country.`Continent` AS country_Continent,
+     country.`Region` AS country_Region,
+     country.`SurfaceArea` AS country_SurfaceArea,
+     country.`IndepYear` AS country_IndepYear,
+     country.`Population` AS country_Population,
+     country.`LifeExpectancy` AS country_LifeExpectancy,
+     country.`GNP` AS country_GNP,
+     country.`GNPOld` AS country_GNPOld,
+     country.`LocalName` AS country_LocalName,
+     country.`GovernmentForm` AS country_GovernmentForm,
+     country.`HeadOfState` AS country_HeadOfState,
+     country.`Capital` AS country_Capital,
+     country.`Code2` AS country_Code2
+FROM
+     `country` country INNER JOIN `city` city ON country.`Code` = city.`CountryCode`]]>
+	</queryString>
+	<field name="city_ID" class="java.lang.Integer"/>
+	<field name="city_Name" class="java.lang.String"/>
+	<field name="city_CountryCode" class="java.lang.String"/>
+	<field name="city_District" class="java.lang.String"/>
+	<field name="city_Population" class="java.lang.Integer"/>
+	<field name="country_Code" class="java.lang.String"/>
+	<field name="country_Name" class="java.lang.String"/>
+	<field name="country_Continent" class="java.lang.String"/>
+	<field name="country_Region" class="java.lang.String"/>
+	<field name="country_SurfaceArea" class="java.math.BigDecimal"/>
+	<field name="country_IndepYear" class="java.lang.Integer"/>
+	<field name="country_Population" class="java.lang.Integer"/>
+	<field name="country_LifeExpectancy" class="java.math.BigDecimal"/>
+	<field name="country_GNP" class="java.math.BigDecimal"/>
+	<field name="country_GNPOld" class="java.math.BigDecimal"/>
+	<field name="country_LocalName" class="java.lang.String"/>
+	<field name="country_GovernmentForm" class="java.lang.String"/>
+	<field name="country_HeadOfState" class="java.lang.String"/>
+	<field name="country_Capital" class="java.lang.Integer"/>
+	<field name="country_Code2" class="java.lang.String"/>
+	<group name="PAISES">
+		<groupExpression><![CDATA[$F{country_Name}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="39" width="100" height="20" uuid="2781cc04-275b-4228-a3d5-db279752fa29"/>
+				<text><![CDATA[PAISES-CIUDADES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="138" height="20" uuid="184ced73-9348-47a2-9a80-8b66d32d0311"/>
+				<text><![CDATA[country_Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="3" width="138" height="20" uuid="b83ac233-7652-4414-8870-7dfcf4345b90"/>
+				<text><![CDATA[country_Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="3" width="138" height="20" uuid="9cc16119-8a47-43e8-8e8d-d3b45ed7f868"/>
+				<text><![CDATA[country_Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="3" width="138" height="20" uuid="fa8c77cd-7ded-4d70-8fc9-a49510af52f0"/>
+				<text><![CDATA[country_Population]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-87" width="138" height="20" uuid="1ef722a6-0386-47ac-91c8-ffc9d04ca92d"/>
+				<textFieldExpression><![CDATA[$F{country_Code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="-87" width="138" height="20" uuid="bf57eaf2-8d06-4ca5-8105-73582c5dd1d1"/>
+				<textFieldExpression><![CDATA[$F{country_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="-87" width="138" height="20" uuid="44c25623-0cae-453e-8930-3906618393d2"/>
+				<textFieldExpression><![CDATA[$F{country_Capital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="-87" width="138" height="20" uuid="df33f863-ea01-4552-8a73-be4184ed5861"/>
+				<textFieldExpression><![CDATA[$F{country_Population}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="10" width="111" height="20" uuid="859d61aa-4584-4e70-b9a0-0424bffbb8e2"/>
+				<textFieldExpression><![CDATA[$F{city_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="10" width="111" height="20" uuid="23902850-358a-4310-8807-ef09a9edde9d"/>
+				<textFieldExpression><![CDATA[$F{city_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="10" width="111" height="20" uuid="ef0b4576-4877-4c6c-9994-c17215ed5969"/>
+				<textFieldExpression><![CDATA[$F{city_CountryCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="10" width="111" height="20" uuid="97a5e4cd-3f01-4231-ba97-cc66c7ba6f81"/>
+				<textFieldExpression><![CDATA[$F{city_District}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="10" width="111" height="20" uuid="331d6979-5a01-4185-ad69-53a886bb4050"/>
+				<textFieldExpression><![CDATA[$F{city_Population}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
