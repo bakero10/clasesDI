@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ciudadesSubInformePais" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87ac31e7-b539-4801-8897-93b48dd37087">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PAIS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\DAM2Alu1\\Documents\\NetBeansProjects\\jasper\\informes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     country.`Code` AS country_Code,
+     city.`ID` AS city_ID,
+     city.`Name` AS city_Name,
+     city.`CountryCode` AS city_CountryCode,
+     city.`District` AS city_District,
+     city.`Population` AS city_Population,
+     country.`Name` AS country_Name
+FROM
+     `country` country INNER JOIN `city` city ON country.`Code` = city.`CountryCode`
+WHERE
+country.`Name` = $P{PAIS}]]>
+	</queryString>
+	<field name="country_Code" class="java.lang.String"/>
+	<field name="city_ID" class="java.lang.Integer"/>
+	<field name="city_Name" class="java.lang.String"/>
+	<field name="city_CountryCode" class="java.lang.String"/>
+	<field name="city_District" class="java.lang.String"/>
+	<field name="city_Population" class="java.lang.Integer"/>
+	<field name="country_Name" class="java.lang.String"/>
+	<group name="country_Name">
+		<groupExpression><![CDATA[$F{country_Name}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="142" splitType="Stretch">
+			<subreport>
+				<reportElement x="49" y="0" width="419" height="142" uuid="c7b30489-2a46-442f-b5b7-57b276371558"/>
+				<subreportParameter name="COD">
+					<subreportParameterExpression><![CDATA[$F{country_Code}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ciudadesSubInformePais_subInforme.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="739d99ae-72c2-482e-a3a7-3f59e4f7c3c5"/>
+				<text><![CDATA[city_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="1aa5b4b6-fe82-4be7-b50f-cfd673035665"/>
+				<text><![CDATA[city_Population]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="e683b0bd-33ed-4867-8aa2-43dfb7b87e1e"/>
+				<text><![CDATA[city_District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="e96bfcac-6083-40fd-a8a1-bac8a88111fb"/>
+				<text><![CDATA[city_Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="4f782cab-d5fc-47bb-ac5b-b67dc9bfc9c3"/>
+				<textFieldExpression><![CDATA[$F{city_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="a14e96c2-266a-4aab-9ca5-2496664ad99d"/>
+				<textFieldExpression><![CDATA[$F{city_Population}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="c863e712-9af5-4a96-8da8-78177d0f18fd"/>
+				<textFieldExpression><![CDATA[$F{city_District}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="e8351bf3-a3b7-4b4f-b64c-418af342b743"/>
+				<textFieldExpression><![CDATA[$F{city_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

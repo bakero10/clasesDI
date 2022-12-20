@@ -27,7 +27,7 @@ public class JFrameComboBox extends javax.swing.JFrame {
     public JFrameComboBox() {
         initComponents();
         dcbm = new DefaultComboBoxModel();
-        conexion = new ConexionBBDD("192.168.101.108", "3306", "world","root", "root");
+        conexion = new ConexionBBDD("192.168.101.112", "3306", "world","root", "root");
         String sql = "SELECT Name FROM country";
         conexion.selectSQL(sql, dcbm);
         jComboBoxPaises.setModel(dcbm);
@@ -99,7 +99,7 @@ public class JFrameComboBox extends javax.swing.JFrame {
             String fileJasper = "informes/pais.jasper";
             Map parameters = new HashMap();
             parameters.put("PAIS",jComboBoxPaises.getSelectedItem());
-            conexion = new ConexionBBDD("192.168.101.108", "3306", "world","root", "root");
+            conexion = new ConexionBBDD("192.168.101.112", "3306", "world","root", "root");
             JasperPrint print = 
             JasperFillManager.fillReport(fileJasper,parameters,conexion.getConnection());
             JasperViewer jviewer = new JasperViewer(print,false);
@@ -118,7 +118,7 @@ public class JFrameComboBox extends javax.swing.JFrame {
             String fileJasper = "informes/CiudadesPais.jasper";
             Map parameters = new HashMap();
             parameters.put("PAIS",jComboBoxPaises.getSelectedItem());
-            conexion = new ConexionBBDD("192.168.101.108", "3306", "world","root", "root");
+            conexion = new ConexionBBDD("192.168.101.112", "3306", "world","root", "root");
             JasperPrint print = 
             JasperFillManager.fillReport(fileJasper,parameters,conexion.getConnection());
             JasperViewer jviewer = new JasperViewer(print,false);
