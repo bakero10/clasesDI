@@ -1,0 +1,9 @@
+<map version="1.0">
+	<mapID target="aplicacion" url="html/main.html" />
+	<mapID target="ventana_almacen" url="html/almacen.html" />
+	<mapID target="ventana_clientes" url="html/clientes.html" />
+	<mapID target="ventana_pantallaInicio" url="html/pantallaInicio.html" />
+	<mapID target="ventana_principal" url="html/principal.html" />
+	<mapID target="ventana_reparaciones" url="html/reparaciones.html" />
+	<mapID target="ventana_vehiculos" url="html/vehiculos.html" />
+</map>

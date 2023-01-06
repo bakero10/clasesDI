@@ -1,0 +1,9 @@
+<index version="1.0">
+    <indexitem text="JavaHelp" target="aplicacion"/>
+    <indexitem text="Ventana Pantalla Inicio"  target="ventana_pantallaInicio"/>
+    <indexitem text="Ventana Principal"  target="ventana_principal"/>
+    <indexitem text="Ventana Clientes"  target="ventana_clientes"/>
+    <indexitem text="Ventana Vehiculos"  target="ventana_vehiculos"/>
+    <indexitem text="Ventana Reparaciones"  target="ventana_reparaciones"/>
+    <indexitem text="Ventana Almacen" target="ventana_almacen"/>
+</index>
