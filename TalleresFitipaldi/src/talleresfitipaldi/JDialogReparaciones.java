@@ -5,7 +5,15 @@
 package talleresfitipaldi;
 
 import Logica_Del_Negocio.Coche;
+import conexionBD.ConexionBBDD;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -24,10 +32,13 @@ public class JDialogReparaciones extends javax.swing.JDialog {
     DefaultTableModel dtmPepe;
     
     String cabecera [] = {"Coche","Mecanico"};
+    ConexionBBDD conexion;
     
     public JDialogReparaciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        conexion = new ConexionBBDD("192.168.1.37", "3306", "TallerFiti", "root", "root");
+        
         padre = (JFramePrincipal)parent;
         this.setTitle("Gestión de Reparaciones");
         
@@ -41,6 +52,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         jTable1.setModel(dtmTodos);
         //PONEMOS EL RADIOBUTTON VER TODO POR DEFECTO
         jRadioButtonGeneral.setSelected(true);
+        
     }
     
      //METODO INSERTAR DATOS EN TABLAS
@@ -56,6 +68,8 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                 String datos3 []={coche.getMarca()+" - " + coche.getModelo()+" - " + coche.getMatricula(),coche.getMecanico()};
             dtmPepe.addRow(datos);
             }
+            
+            conexion.aniadirBD(Cliente, Vehiculo, Piezas, Horas, Observaciones);
         }
         
         
@@ -72,12 +86,16 @@ public class JDialogReparaciones extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroupReparaciones = new javax.swing.ButtonGroup();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonAlmacen = new javax.swing.JButton();
         jRadioButtonJuan = new javax.swing.JRadioButton();
         jRadioButtonGeneral = new javax.swing.JRadioButton();
         jRadioButtonPepe = new javax.swing.JRadioButton();
+        Generar = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -126,6 +144,13 @@ public class JDialogReparaciones extends javax.swing.JDialog {
             }
         });
 
+        Generar.setText("Generar");
+        Generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,8 +170,10 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                         .addComponent(jRadioButtonGeneral))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addComponent(jButtonAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(Generar)))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,8 +185,10 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                     .addComponent(jRadioButtonGeneral)
                     .addComponent(jRadioButtonPepe))
                 .addGap(33, 33, 33)
-                .addComponent(jButtonAlmacen)
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAlmacen)
+                    .addComponent(Generar))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,14 +217,39 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButtonAlmacenActionPerformed
 
+    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+        try{     
+            String fileJasper = "informes/presupuesto.jasper";
+            Map parameters = new HashMap();
+            parameters.put("MATRICULA","552d");
+            JasperPrint print = JasperFillManager.fillReport(fileJasper,parameters,conexion.getConnection());    
+            mostrarInforme(print);
+         }  catch (Exception ex){
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Se produjo un error al leer el archivo .jasper");
+         }
+    }//GEN-LAST:event_GenerarActionPerformed
+
+    
+    public void mostrarInforme(JasperPrint print){
+        JRViewer visor = new JRViewer(print);
+        JDialog dialog = new JDialog(this, true);
+        dialog.getContentPane().add(visor);
+        dialog.setSize(700, 700);
+        dialog.setLocationRelativeTo(null);// centrar en medio
+        dialog.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Generar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroupReparaciones;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlmacen;
     private javax.swing.JRadioButton jRadioButtonGeneral;
     private javax.swing.JRadioButton jRadioButtonJuan;

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="presupuesto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d381543b-b067-4d2c-908e-06d43d192fdf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MAT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MATRICULA" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     Presupuesto.`nombreCliente` AS Presupuesto_nombreCliente,
+     Presupuesto.`apellidos` AS Presupuesto_apellidos,
+     Presupuesto.`telefono` AS Presupuesto_telefono,
+     Presupuesto.`dni` AS Presupuesto_dni,
+     Presupuesto.`matricula` AS Presupuesto_matricula,
+     Presupuesto.`marca` AS Presupuesto_marca,
+     Presupuesto.`modelo` AS Presupuesto_modelo
+FROM
+     `Presupuesto` Presupuesto
+WHERE
+     Presupuesto.`matricula` LIKE $P{MATRICULA}]]>
+	</queryString>
+	<field name="Presupuesto_nombreCliente" class="java.lang.String"/>
+	<field name="Presupuesto_apellidos" class="java.lang.String"/>
+	<field name="Presupuesto_telefono" class="java.lang.Integer"/>
+	<field name="Presupuesto_dni" class="java.lang.String"/>
+	<field name="Presupuesto_matricula" class="java.lang.String"/>
+	<field name="Presupuesto_marca" class="java.lang.String"/>
+	<field name="Presupuesto_modelo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="20" uuid="d613c8ec-b2a5-4cca-86e9-3f2bceabe466"/>
+				<text><![CDATA[Presupuesto_nombreCliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="79" height="20" uuid="a0efe3fb-eea9-4585-a615-14bf2c1b8593"/>
+				<text><![CDATA[Presupuesto_apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="79" height="20" uuid="0dd76c7c-87d1-4c16-871e-fc2ed2bf5fa0"/>
+				<text><![CDATA[Presupuesto_telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="0" width="79" height="20" uuid="23f79f16-051b-46bd-9634-fabbaf841f78"/>
+				<text><![CDATA[Presupuesto_dni]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="79" height="20" uuid="6f3f6769-ca19-4e5b-ae51-e83f2408421a"/>
+				<text><![CDATA[Presupuesto_matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="0" width="79" height="20" uuid="ac0af8ac-bd7c-41d6-866f-143c32607ba6"/>
+				<text><![CDATA[Presupuesto_marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="0" width="79" height="20" uuid="c857645c-e50b-41a3-905c-da0d5fed8a29"/>
+				<text><![CDATA[Presupuesto_modelo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="79" height="20" uuid="63accc8a-c204-44fb-b2c2-99bd9b1c9dba"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_nombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="79" height="20" uuid="b291e1b8-fb2f-488e-98ce-f4fbcac23848"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="79" height="20" uuid="404ada17-eb7d-4e19-aab9-a1fa767dbd16"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="79" height="20" uuid="596249a9-f6a6-48cb-a622-f827c034dfe7"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="79" height="20" uuid="ff191de7-1795-4128-b695-e23503304c8a"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="79" height="20" uuid="1ae9bdca-6608-427c-b589-989d69a9af1a"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="79" height="20" uuid="142d6176-d0c1-4c14-a910-39cc3f342459"/>
+				<textFieldExpression><![CDATA[$F{Presupuesto_modelo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
