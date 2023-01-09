@@ -67,10 +67,13 @@ public class JDialogPantallaInicio extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextFieldUsuario.setText("Pepe");
         jPanel1.add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, 30));
+
+        jPasswordField1.setText("pepe");
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 170, 30));
 
         jButtonAcceso.setText("Acceso");

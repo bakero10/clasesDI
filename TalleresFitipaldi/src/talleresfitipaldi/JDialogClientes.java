@@ -6,6 +6,7 @@ package talleresfitipaldi;
 
 import Logica_Del_Negocio.Cliente;
 import Logica_Del_Negocio.Coche;
+import conexionBD.ConexionBBDD;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,14 +21,18 @@ public class JDialogClientes extends javax.swing.JDialog {
      * Creates new form JDialogClientes
      */
     JFramePrincipal padre;
-     JDialogVehiculos jDialogVehiculos;
-
+    JDialogVehiculos jDialogVehiculos;
+    ConexionBBDD conexion;
+     
     public JDialogClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        conexion = new ConexionBBDD("192.168.101.140", "3306", "TallerFiti", "root", "root");
         padre = (JFramePrincipal) parent;
         this.setTitle("Gestión de clientes");
-      
+        jDialogVehiculos = new JDialogVehiculos(parent, modal);
+        
+        
         // INTRODUCIMOS EL NOMBRE DEL CLIENTE EN EL JCOMBOBOX
         for (Cliente cliente : padre.lista) {
          jComboBoxlistaClientes.addItem(cliente.getNombre()); 
@@ -279,7 +284,10 @@ public class JDialogClientes extends javax.swing.JDialog {
              JOptionPane.showMessageDialog(null, "Se ha dado de alta a "+jTextFieldNombre.getText(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
             jComboBoxlistaClientes.removeAllItems();
             annadirCombobox();
+            conexion.aniadirBD(c.getNombre(), c.getApellidos(), Integer.parseInt(c.getTelefono()), c.getDni(), c.getMarca(), c.getModelo(), c.getMatricula());
             jDialogVehiculos.actualizarTablaCoche();
+            
+            
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed

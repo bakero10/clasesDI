@@ -9,9 +9,12 @@ import Logica_Del_Negocio.ArrayCliente;
 import Logica_Del_Negocio.Cliente;
 import Logica_Del_Negocio.Coche;
 import Logica_Del_Negocio.Mecanico;
+import conexionBD.ConexionBBDD;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,9 +41,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
      ArrayList<String> listaPiezas;
      boolean aplicacionIniciada = false;
      
+    ConexionBBDD conexion;
+     
     public ArrayList<Cliente> ArrayPapa = new ArrayCliente().getLista();
     public JFramePrincipal() {
         initComponents();
+         conexion = new ConexionBBDD("192.168.101.140", "3306", "TallerFiti", "root", "root");
         
          ImageIcon fot = new ImageIcon("src/Imagen/mecanicadia.jpg");
          Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
@@ -68,6 +74,23 @@ public class JFramePrincipal extends javax.swing.JFrame {
         lista.add(c);
         lista.add(c1);
         lista.add(c2);
+        
+        for (Cliente cl : lista) {
+            try{ 
+             PreparedStatement consulta  = conexion.getConnection().prepareStatement("SELECT matricula FROM Presupuesto WHERE matricula LIKE ?");
+             consulta.setString(1, cl.getMatricula());
+             consulta.executeQuery();
+             ResultSet rs = consulta.getResultSet();
+             rs.next();
+             if (!rs.getString(1).equalsIgnoreCase(cl.getMatricula()) ){
+                conexion.aniadirBD(cl.getNombre(), cl.getApellidos(), Integer.parseInt(cl.getTelefono()), cl.getDni(), cl.getMarca(), cl.getModelo(), cl.getMatricula());
+             }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            
+        }
+        
         
         //RELLENAMOS LISTA PARA COMBOBOX ALMACEN
         

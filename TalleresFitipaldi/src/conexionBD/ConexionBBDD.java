@@ -84,15 +84,19 @@ public class ConexionBBDD {
     }
     
     
-    public int aniadirBD(String Cliente, String Vehiculo, String Piezas, String Horas, String Observaciones) {
+    public int aniadirBD(String nombre, String apellidos, int telefono, String dni, String marca ,String modelo ,String matricula) {
         try {
             PreparedStatement consulta = conexion.prepareStatement("insert into Presupuesto "
-                    + "(Fecha, Cliente, Vehiculo, Pieza, Hora, Observacion) values (?,?,?,?,?,?)");
-            consulta.setString(2,Cliente);
-            consulta.setInt(3,Vehiculo);
-            consulta.setString(4,Piezas);
-            consulta.setString(5,Horas);
-            consulta.setString(6,Observaciones);
+                    + "(nombre, apellidos, telefono, dni, marca, modelo, matricula) values (?,?,?,?,?,?,?)");
+                    // tambien se puede introducir ("insert into Presupuesto "
+                    // + " values (?,?,?,?,?,?)");
+            consulta.setString(1,nombre);
+            consulta.setString(2,apellidos);
+            consulta.setInt(3,telefono);
+            consulta.setString(4,dni);
+            consulta.setString(5,marca);
+            consulta.setString(6,modelo);
+            consulta.setString(7,matricula);
 
             return consulta.executeUpdate();
 

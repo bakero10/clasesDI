@@ -37,7 +37,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
     public JDialogReparaciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        conexion = new ConexionBBDD("192.168.1.37", "3306", "TallerFiti", "root", "root");
+        conexion = new ConexionBBDD("192.168.101.140", "3306", "TallerFiti", "root", "root");
         
         padre = (JFramePrincipal)parent;
         this.setTitle("Gestión de Reparaciones");
@@ -69,7 +69,7 @@ public class JDialogReparaciones extends javax.swing.JDialog {
             dtmPepe.addRow(datos);
             }
             
-            conexion.aniadirBD(Cliente, Vehiculo, Piezas, Horas, Observaciones);
+            
         }
         
         
@@ -98,7 +98,6 @@ public class JDialogReparaciones extends javax.swing.JDialog {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,9 +170,9 @@ public class JDialogReparaciones extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jButtonAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
+                        .addGap(35, 35, 35)
                         .addComponent(Generar)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,10 +217,13 @@ public class JDialogReparaciones extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAlmacenActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        try{     
-            String fileJasper = "informes/presupuesto.jasper";
+        try{    
+            
+            String matricula = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+            String[] matriculaFinal = matricula.split("-");
+            String fileJasper = "informes/Presupuesto.jasper";
             Map parameters = new HashMap();
-            parameters.put("MATRICULA","552d");
+            parameters.put("matricula",matriculaFinal[2].substring(1));
             JasperPrint print = JasperFillManager.fillReport(fileJasper,parameters,conexion.getConnection());    
             mostrarInforme(print);
          }  catch (Exception ex){
